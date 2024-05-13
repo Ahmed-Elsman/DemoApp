@@ -18,6 +18,7 @@ extension GiveawaysClient: DependencyKey {
             guard let url = URL(string: "https://www.gamerpower.com/api/giveaways") else {
                 throw URLError(.badURL)
             }
+            // FIXME: need to handle this using alamofire
             let (data, _) = try await URLSession.shared.data(from: url)
             let giveaways = try JSONDecoder().decode([Giveaway].self, from: data)
             return giveaways
