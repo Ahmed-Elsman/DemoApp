@@ -17,16 +17,23 @@ struct GiveawaysView: View {
             ZStack(alignment: .top) {
                 Color.white.ignoresSafeArea()
                 ScrollView(.vertical) {
-                    VStack(alignment: .leading) {
+                    VStack(alignment: .leading, spacing: 8) {
                         headerView(viewStore: viewStore)
                         
-                        LazyVStack {
-                            if let giveaways = viewStore.giveaways {
-                                ForEach(Array(giveaways)) { giveaway in
-                                    HStack {
-                                        Text("\(giveaway.title)")
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text("Explore \nGames Giveaways")
+                                .font(.largeTitle)
+                                .fontWeight(.bold)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .padding(.horizontal, 16)
+                            LazyVStack {
+                                if let giveaways = viewStore.giveaways {
+                                    ForEach(Array(giveaways)) { giveaway in
+                                        HStack {
+                                            Text("\(giveaway.title)")
+                                        }
+                                        .padding()
                                     }
-                                    .padding()
                                 }
                             }
                         }
