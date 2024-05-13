@@ -16,6 +16,10 @@
 		2771CCF62BF225F400984754 /* GiveawaysClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2771CCF52BF225F400984754 /* GiveawaysClient.swift */; };
 		2771CCF92BF22C7100984754 /* GiveawayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2771CCF82BF22C7100984754 /* GiveawayModel.swift */; };
 		277D9BF12BF23C46002A5914 /* SwiftfulUI in Frameworks */ = {isa = PBXBuildFile; productRef = 277D9BF02BF23C46002A5914 /* SwiftfulUI */; };
+		277D9BF42BF23D1F002A5914 /* ImageLoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277D9BF32BF23D1F002A5914 /* ImageLoaderView.swift */; };
+		277D9BF72BF23F3B002A5914 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 277D9BF62BF23F3B002A5914 /* SDWebImageSwiftUI */; };
+		277D9BF92BF23F87002A5914 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277D9BF82BF23F87002A5914 /* Constants.swift */; };
+		277D9BFB2BF2405C002A5914 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277D9BFA2BF2405C002A5914 /* UserModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +32,9 @@
 		2771CCF52BF225F400984754 /* GiveawaysClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiveawaysClient.swift; sourceTree = "<group>"; };
 		2771CCF72BF2267500984754 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		2771CCF82BF22C7100984754 /* GiveawayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiveawayModel.swift; sourceTree = "<group>"; };
+		277D9BF32BF23D1F002A5914 /* ImageLoaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageLoaderView.swift; sourceTree = "<group>"; };
+		277D9BF82BF23F87002A5914 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		277D9BFA2BF2405C002A5914 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +42,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				277D9BF72BF23F3B002A5914 /* SDWebImageSwiftUI in Frameworks */,
 				277D9BF12BF23C46002A5914 /* SwiftfulUI in Frameworks */,
 				2771CCEF2BF222A000984754 /* ComposableArchitecture in Frameworks */,
 			);
@@ -63,6 +71,8 @@
 			isa = PBXGroup;
 			children = (
 				2771CCF72BF2267500984754 /* Info.plist */,
+				277D9BFC2BF2407C002A5914 /* Models */,
+				277D9BF22BF23D15002A5914 /* Shared */,
 				2771CCF02BF2238800984754 /* Components */,
 				2771CCF12BF223A800984754 /* Core */,
 				2771CCDF2BF220D200984754 /* TaskDemoApp.swift */,
@@ -101,9 +111,26 @@
 				2771CCE12BF220D200984754 /* GiveawaysView.swift */,
 				2771CCF32BF224CA00984754 /* GiveawaysFeature.swift */,
 				2771CCF52BF225F400984754 /* GiveawaysClient.swift */,
-				2771CCF82BF22C7100984754 /* GiveawayModel.swift */,
 			);
 			path = Giveaways;
+			sourceTree = "<group>";
+		};
+		277D9BF22BF23D15002A5914 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				277D9BF32BF23D1F002A5914 /* ImageLoaderView.swift */,
+				277D9BF82BF23F87002A5914 /* Constants.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		277D9BFC2BF2407C002A5914 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2771CCF82BF22C7100984754 /* GiveawayModel.swift */,
+				277D9BFA2BF2405C002A5914 /* UserModel.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -125,6 +152,7 @@
 			packageProductDependencies = (
 				2771CCEE2BF222A000984754 /* ComposableArchitecture */,
 				277D9BF02BF23C46002A5914 /* SwiftfulUI */,
+				277D9BF62BF23F3B002A5914 /* SDWebImageSwiftUI */,
 			);
 			productName = TaskDemo;
 			productReference = 2771CCDC2BF220D200984754 /* TaskDemo.app */;
@@ -157,6 +185,7 @@
 			packageReferences = (
 				2771CCED2BF222A000984754 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
 				277D9BEF2BF23C46002A5914 /* XCRemoteSwiftPackageReference "SwiftfulUI" */,
+				277D9BF52BF23F3B002A5914 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 			);
 			productRefGroup = 2771CCDD2BF220D200984754 /* Products */;
 			projectDirPath = "";
@@ -186,7 +215,10 @@
 			files = (
 				2771CCF92BF22C7100984754 /* GiveawayModel.swift in Sources */,
 				2771CCE22BF220D200984754 /* GiveawaysView.swift in Sources */,
+				277D9BFB2BF2405C002A5914 /* UserModel.swift in Sources */,
 				2771CCF42BF224CA00984754 /* GiveawaysFeature.swift in Sources */,
+				277D9BF42BF23D1F002A5914 /* ImageLoaderView.swift in Sources */,
+				277D9BF92BF23F87002A5914 /* Constants.swift in Sources */,
 				2771CCE02BF220D200984754 /* TaskDemoApp.swift in Sources */,
 				2771CCF62BF225F400984754 /* GiveawaysClient.swift in Sources */,
 			);
@@ -414,6 +446,14 @@
 				minimumVersion = 1.2.0;
 			};
 		};
+		277D9BF52BF23F3B002A5914 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.4;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -426,6 +466,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 277D9BEF2BF23C46002A5914 /* XCRemoteSwiftPackageReference "SwiftfulUI" */;
 			productName = SwiftfulUI;
+		};
+		277D9BF62BF23F3B002A5914 /* SDWebImageSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 277D9BF52BF23F3B002A5914 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
+			productName = SDWebImageSwiftUI;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

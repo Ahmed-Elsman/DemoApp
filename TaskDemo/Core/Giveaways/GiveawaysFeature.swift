@@ -13,6 +13,7 @@ struct GiveawaysFeature {
     @ObservableState
     struct State: Equatable {
         var giveaways: [Giveaway]?
+        var currentUser: User = User.mock
         var isloading = false
     }
     
