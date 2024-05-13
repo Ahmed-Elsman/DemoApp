@@ -15,6 +15,7 @@
 		2771CCF42BF224CA00984754 /* GiveawaysFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2771CCF32BF224CA00984754 /* GiveawaysFeature.swift */; };
 		2771CCF62BF225F400984754 /* GiveawaysClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2771CCF52BF225F400984754 /* GiveawaysClient.swift */; };
 		2771CCF92BF22C7100984754 /* GiveawayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2771CCF82BF22C7100984754 /* GiveawayModel.swift */; };
+		277D9BF12BF23C46002A5914 /* SwiftfulUI in Frameworks */ = {isa = PBXBuildFile; productRef = 277D9BF02BF23C46002A5914 /* SwiftfulUI */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				277D9BF12BF23C46002A5914 /* SwiftfulUI in Frameworks */,
 				2771CCEF2BF222A000984754 /* ComposableArchitecture in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -122,6 +124,7 @@
 			name = TaskDemo;
 			packageProductDependencies = (
 				2771CCEE2BF222A000984754 /* ComposableArchitecture */,
+				277D9BF02BF23C46002A5914 /* SwiftfulUI */,
 			);
 			productName = TaskDemo;
 			productReference = 2771CCDC2BF220D200984754 /* TaskDemo.app */;
@@ -153,6 +156,7 @@
 			mainGroup = 2771CCD32BF220D200984754;
 			packageReferences = (
 				2771CCED2BF222A000984754 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
+				277D9BEF2BF23C46002A5914 /* XCRemoteSwiftPackageReference "SwiftfulUI" */,
 			);
 			productRefGroup = 2771CCDD2BF220D200984754 /* Products */;
 			projectDirPath = "";
@@ -402,6 +406,14 @@
 				minimumVersion = 1.10.4;
 			};
 		};
+		277D9BEF2BF23C46002A5914 /* XCRemoteSwiftPackageReference "SwiftfulUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftfulThinking/SwiftfulUI.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -409,6 +421,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2771CCED2BF222A000984754 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
 			productName = ComposableArchitecture;
+		};
+		277D9BF02BF23C46002A5914 /* SwiftfulUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 277D9BEF2BF23C46002A5914 /* XCRemoteSwiftPackageReference "SwiftfulUI" */;
+			productName = SwiftfulUI;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
