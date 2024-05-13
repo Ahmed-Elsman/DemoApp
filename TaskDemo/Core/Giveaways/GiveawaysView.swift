@@ -13,30 +13,21 @@ struct GiveawaysView: View {
     let store: StoreOf<GiveawaysFeature>
     
     var body: some View {
-        WithViewStore(store, observe: {$0}) { viewStore in
+        WithViewStore(store, observe: { $0 }) { viewStore in
             ZStack(alignment: .top) {
                 Color.white.ignoresSafeArea()
                 ScrollView(.vertical) {
-                    
-                    
-                    HStack(spacing: 0) {
-                        HStack {
-                            ZStack {
-                                ImageLoaderView(imageUrlString: viewStore.currentUser.image)
-                                    .background(.white)
-                                    .clipShape(Circle())
-                            }
-                        }
-                        .frame(width: 35, height: 35)
-                    }
-                    
-                    LazyVStack {
-                        if let giveaways = viewStore.giveaways {
-                            ForEach(Array(giveaways)) { giveaway in
-                                HStack {
-                                    Text("\(giveaway.title)")
+                    VStack(alignment: .leading) {
+                        headerView(viewStore: viewStore)
+                        
+                        LazyVStack {
+                            if let giveaways = viewStore.giveaways {
+                                ForEach(Array(giveaways)) { giveaway in
+                                    HStack {
+                                        Text("\(giveaway.title)")
+                                    }
+                                    .padding()
                                 }
-                                .padding()
                             }
                         }
                     }
@@ -47,7 +38,26 @@ struct GiveawaysView: View {
             }
         }
     }
+    
+    private func headerView(viewStore: ViewStore<GiveawaysFeature.State, GiveawaysFeature.Action>) -> some View {
+        HStack {
+            VStack(alignment: .leading) {
+                Text("👋")
+                Text("Hello, \(viewStore.currentUser.firstName)")
+                    .font(.title3)
+                    .fontWeight(.medium)
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            
+            ImageLoaderView(imageUrlString: viewStore.currentUser.image)
+                .background(.white)
+                .clipShape(Circle())
+                .frame(width: 50)
+        }
+        .padding(.horizontal, 16)
+    }
 }
+
 
 #Preview {
     GiveawaysView(store: Store(initialState: GiveawaysFeature.State()) {
