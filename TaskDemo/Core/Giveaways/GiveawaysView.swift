@@ -18,6 +18,7 @@ struct GiveawaysView: View {
                 Color.white.ignoresSafeArea()
                 ScrollView(.vertical) {
                     VStack(alignment: .leading, spacing: 8) {
+                        
                         headerView(viewStore: viewStore)
                         
                         VStack(alignment: .leading, spacing: 8) {
@@ -26,31 +27,11 @@ struct GiveawaysView: View {
                                 .fontWeight(.bold)
                                 .frame(maxWidth: .infinity, alignment: .leading)
                                 .padding(.horizontal, 16)
-                            LazyVStack {
-                                if viewStore.isloading {
-                                    ProgressView()
-                                }
-                                if let giveaways = viewStore.giveaways {
-                                    ScrollView(.horizontal) {
-                                        HStack(alignment: .top, spacing: 16) {
-                                            ForEach(giveaways) { giveaway in
-                                                GiveawayCellView(
-                                                    store: Store(
-                                                        initialState: GiveawayCellFeature.State(
-                                                            imageName: giveaway.image,
-                                                            title: giveaway.title,
-                                                            description: giveaway.description)
-                                                    ) {
-                                                        GiveawayCellFeature()
-                                                    }
-                                                )
-                                            }
-                                        }
-                                    }
-                                    .padding(.leading, 16)
-                                }
-                            }
+                            
+                            carouslView(viewStore: viewStore)
                         }
+                        
+                        
                     }
                 }
             }
@@ -76,6 +57,33 @@ struct GiveawaysView: View {
                 .frame(width: 50)
         }
         .padding(.horizontal, 16)
+    }
+    
+    private func carouslView(viewStore: ViewStore<GiveawaysFeature.State, GiveawaysFeature.Action>) -> some View {
+        LazyVStack {
+            if viewStore.isloading {
+                ProgressView()
+            }
+            if let giveaways = viewStore.giveaways {
+                ScrollView(.horizontal) {
+                    HStack(alignment: .top, spacing: 16) {
+                        ForEach(giveaways) { giveaway in
+                            GiveawayCellView(
+                                store: Store(
+                                    initialState: GiveawayCellFeature.State(
+                                        imageName: giveaway.image,
+                                        title: giveaway.title,
+                                        description: giveaway.description)
+                                ) {
+                                    GiveawayCellFeature()
+                                }
+                            )
+                        }
+                    }
+                }
+                .padding(.leading, 16)
+            }
+        }
     }
 }
 
