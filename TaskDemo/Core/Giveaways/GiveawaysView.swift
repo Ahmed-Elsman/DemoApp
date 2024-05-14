@@ -56,10 +56,17 @@ struct GiveawaysView: View {
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             
-            ImageLoaderView(imageUrlString: viewStore.currentUser.image)
-                .background(.white)
-                .clipShape(Circle())
-                .frame(width: 50)
+            ImageLoaderView(
+                store: Store(
+                    initialState: ImageLoaderFeature.State(
+                        imageUrlString: viewStore.currentUser.image,
+                        contentMode: .fill)) {
+                            ImageLoaderFeature()
+                        }
+            )
+            .background(.white)
+            .clipShape(Circle())
+            .frame(width: 50)
         }
         .padding(.horizontal, 16)
     }

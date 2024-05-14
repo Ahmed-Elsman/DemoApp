@@ -15,6 +15,7 @@ struct GiveawaysFeature {
         var giveaways: [Giveaway]?
         var currentUser: User = User.mock
         var isloading = false
+        var imageLoaderState = ImageLoaderFeature.State()
     }
     
     enum Action {
