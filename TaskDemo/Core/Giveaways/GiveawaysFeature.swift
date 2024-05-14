@@ -21,11 +21,17 @@ struct GiveawaysFeature {
     enum Action {
         case getGiveaways
         case giveawaysResponse(Result<[Giveaway]?, Error>)
+        case imageLoaderState(ImageLoaderFeature.Action)
     }
     
     @Dependency (\.giveaways) var giveaways
     
     var body: some Reducer<State, Action> {
+        
+        Scope(state: \.imageLoaderState, action: \.imageLoaderState) {
+            ImageLoaderFeature()
+        }
+        
         Reduce { state, action in
             switch action {
             case .getGiveaways:
@@ -46,6 +52,8 @@ struct GiveawaysFeature {
                     state.giveaways = []
                     return .none
                 }
+            case .imageLoaderState:
+                return .none
             }
         }
     }

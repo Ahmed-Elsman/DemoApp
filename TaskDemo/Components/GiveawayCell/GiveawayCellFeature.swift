@@ -29,12 +29,20 @@ struct GiveawayCellFeature {
     
     enum Action {
         case loadImage
+        case imageLoaderState(ImageLoaderFeature.Action)
     }
     
     var body: some Reducer<State, Action> {
+        
+        Scope(state: \.imageLoaderState, action: \.imageLoaderState) {
+            ImageLoaderFeature()
+        }
+        
         Reduce { state, action in
             switch action {
             case .loadImage:
+                return .none
+            case .imageLoaderState:
                 return .none
             }
         }

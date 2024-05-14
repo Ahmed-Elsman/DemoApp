@@ -14,14 +14,7 @@ struct GiveawayCellView: View {
     var body: some View {
         WithViewStore(store, observe: { $0 }) { viewStore in
             ZStack(alignment:.top) {
-                ImageLoaderView(
-                    store: Store(
-                        initialState: ImageLoaderFeature.State(
-                            imageUrlString: viewStore.imageName,
-                            contentMode: .fill)) {
-                                ImageLoaderFeature()
-                            }
-                )
+                ImageLoaderView(store: store.scope(state: \.imageLoaderState, action: \.imageLoaderState))
                 .frame(width: viewStore.imageSize, height: viewStore.imageSize/2)
                 .overlay(
                     LinearGradient(
