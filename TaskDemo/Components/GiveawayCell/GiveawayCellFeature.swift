@@ -17,6 +17,7 @@ struct GiveawayCellFeature {
         var imageName: String
         var title: String
         var description: String
+        var imageLoaderState = ImageLoaderFeature.State()
         
         init(imageSize: CGFloat = 300, imageName: String, title: String, description: String) {
             self.imageSize = imageSize

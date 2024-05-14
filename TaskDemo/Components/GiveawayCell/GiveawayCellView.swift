@@ -14,15 +14,22 @@ struct GiveawayCellView: View {
     var body: some View {
         WithViewStore(store, observe: { $0 }) { viewStore in
             ZStack(alignment:.top) {
-                ImageLoaderView(imageUrlString: viewStore.imageName)
-                    .frame(width: viewStore.imageSize, height: viewStore.imageSize/2)
-                    .overlay(
-                        LinearGradient(
-                            gradient: Gradient(colors: [Color.black.opacity(0.5), Color.black.opacity(0.5), Color.black.opacity(0.5)]),
-                            startPoint: .top,
-                            endPoint: .bottom
-                        )
+                ImageLoaderView(
+                    store: Store(
+                        initialState: ImageLoaderFeature.State(
+                            imageUrlString: viewStore.imageName,
+                            contentMode: .fill)) {
+                                ImageLoaderFeature()
+                            }
+                )
+                .frame(width: viewStore.imageSize, height: viewStore.imageSize/2)
+                .overlay(
+                    LinearGradient(
+                        gradient: Gradient(colors: [Color.black.opacity(0.5), Color.black.opacity(0.5), Color.black.opacity(0.5)]),
+                        startPoint: .top,
+                        endPoint: .bottom
                     )
+                )
                 VStack(alignment: .leading) {
                     Text(viewStore.title)
                         .font(.callout)
