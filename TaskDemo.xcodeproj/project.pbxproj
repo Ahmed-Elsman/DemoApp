@@ -23,6 +23,7 @@
 		277D9BF72BF23F3B002A5914 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 277D9BF62BF23F3B002A5914 /* SDWebImageSwiftUI */; };
 		277D9BF92BF23F87002A5914 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277D9BF82BF23F87002A5914 /* Constants.swift */; };
 		277D9BFB2BF2405C002A5914 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277D9BFA2BF2405C002A5914 /* UserModel.swift */; };
+		27DAFE482BF3795800DD9FE1 /* Platform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27DAFE472BF3795800DD9FE1 /* Platform.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,7 @@
 		277D9BF32BF23D1F002A5914 /* ImageLoaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageLoaderView.swift; sourceTree = "<group>"; };
 		277D9BF82BF23F87002A5914 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		277D9BFA2BF2405C002A5914 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		27DAFE472BF3795800DD9FE1 /* Platform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Platform.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +156,7 @@
 			children = (
 				2771CCF82BF22C7100984754 /* GiveawayModel.swift */,
 				277D9BFA2BF2405C002A5914 /* UserModel.swift */,
+				27DAFE472BF3795800DD9FE1 /* Platform.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -248,6 +251,7 @@
 				2771CCE02BF220D200984754 /* TaskDemoApp.swift in Sources */,
 				27404C532BF24CE400F73D56 /* GiveawayCellView.swift in Sources */,
 				2771CCF62BF225F400984754 /* GiveawaysClient.swift in Sources */,
+				27DAFE482BF3795800DD9FE1 /* Platform.swift in Sources */,
 				27404C552BF33D1900F73D56 /* GiveawayCellFeature.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
