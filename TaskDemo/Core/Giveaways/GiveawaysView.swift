@@ -27,13 +27,27 @@ struct GiveawaysView: View {
                                 .frame(maxWidth: .infinity, alignment: .leading)
                                 .padding(.horizontal, 16)
                             LazyVStack {
+                                if viewStore.isloading {
+                                    ProgressView()
+                                }
                                 if let giveaways = viewStore.giveaways {
-                                    ForEach(Array(giveaways)) { giveaway in
-                                        HStack {
-                                            Text("\(giveaway.title)")
+                                    ScrollView(.horizontal) {
+                                        HStack(alignment: .top, spacing: 16) {
+                                            ForEach(giveaways) { giveaway in
+                                                GiveawayCellView(
+                                                    store: Store(
+                                                        initialState: GiveawayCellFeature.State(
+                                                            imageName: giveaway.image,
+                                                            title: giveaway.title,
+                                                            description: giveaway.description)
+                                                    ) {
+                                                        GiveawayCellFeature()
+                                                    }
+                                                )
+                                            }
                                         }
-                                        .padding()
                                     }
+                                    .padding(.leading, 16)
                                 }
                             }
                         }
@@ -57,9 +71,9 @@ struct GiveawaysView: View {
             .frame(maxWidth: .infinity, alignment: .leading)
             
             ImageLoaderView(store: store.scope(state: \.imageLoaderState, action: \.imageLoaderState))
-            .background(.white)
-            .clipShape(Circle())
-            .frame(width: 50)
+                .background(.white)
+                .clipShape(Circle())
+                .frame(width: 50)
         }
         .padding(.horizontal, 16)
     }

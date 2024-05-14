@@ -14,7 +14,11 @@ struct GiveawayCellView: View {
     var body: some View {
         WithViewStore(store, observe: { $0 }) { viewStore in
             ZStack(alignment:.top) {
-                ImageLoaderView(store: store.scope(state: \.imageLoaderState, action: \.imageLoaderState))
+                ImageLoaderView(store: Store(
+                    initialState: ImageLoaderFeature.State(imageUrlString: viewStore.imageName)
+                ) {
+                    ImageLoaderFeature()
+                })
                 .frame(width: viewStore.imageSize, height: viewStore.imageSize/2)
                 .overlay(
                     LinearGradient(
@@ -55,10 +59,9 @@ struct GiveawayCellView: View {
         GiveawayCellView(
             store: Store(
                 initialState: GiveawayCellFeature.State(
-                    imageSize: 300,
                     imageName: Constants.randomImage,
-                    title: "MechDefender (IndieGala) Giveaway",
-                    description: "Download MechDefender for free via IndieGala! MechDefender is an indie top-down shooter with tower defense features."
+                    title: "",
+                    description: ""
                 )
             ) {
                 GiveawayCellFeature()
