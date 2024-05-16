@@ -25,7 +25,7 @@ struct GiveawayVListView: View {
     }
     
     private func listView(viewStore: ViewStore<GiveawayVListFeature.State, GiveawayVListFeature.Action>) -> some View {
-        ScrollView {
+//        ScrollView {
             LazyVStack {
                 if viewStore.isloading {
                     ProgressView()
@@ -41,7 +41,7 @@ struct GiveawayVListView: View {
             .padding(.top, 16)
             .padding(.bottom, 16)
         }
-    }
+//    }
 }
 
 #Preview {
@@ -54,5 +54,6 @@ struct GiveawayVListView: View {
                 GiveawayVListFeature()
             }
         )
+        
     }
 }

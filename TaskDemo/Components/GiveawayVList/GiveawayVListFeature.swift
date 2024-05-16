@@ -16,7 +16,7 @@ struct GiveawayVListFeature {
         var giveawaysStatesList: IdentifiedArrayOf<GiveawayCellFeature.State> = []
         var isloading = false
         var cellSize: CGFloat = 300
-        var selectedPlatform: Platform = Platform.all
+        var selectedPlatform: Platform = Platform.ios
         var frameWidth: CGFloat = 300
     }
     

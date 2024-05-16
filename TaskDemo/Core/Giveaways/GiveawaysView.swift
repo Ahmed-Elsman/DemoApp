@@ -14,27 +14,27 @@ struct GiveawaysView: View {
     let store: StoreOf<ComposedFeature>
     
     var body: some View {
-            ZStack(alignment: .top) {
-                Color.white.ignoresSafeArea()
-                ScrollView(.vertical) {
-                    LazyVStack(alignment: .leading, spacing: 8) {
-                        
-                        headerView(viewStore: store.scope(state: \.giveawayhome, action: \.giveawayhome))
-                        
-                        VStack(alignment: .leading, spacing: 8) {
-                            Text("Explore \nGames Giveaways")
-                                .font(.largeTitle)
-                                .fontWeight(.bold)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .padding(.horizontal, 16)
-                            
-                            GiveawayListView(store: store.scope(state: \.giveawaylist, action: \.giveawaylist))
-                        }
-                        
-                        GiveawayListWithFiltrationView(store: store.scope(state: \.giveawayListWithFilter, action: \.giveawayListWithFilter))
-                    }
+        ZStack(alignment: .top) {
+            Color.white.ignoresSafeArea()
+            
+            ScrollView(.vertical) {
+                VStack(alignment: .leading, spacing: 16) {
+                    headerView(viewStore: store.scope(state: \.giveawayhome, action: \.giveawayhome))
+                        .padding(.horizontal, 16)
+                    Text("Explore \nGames Giveaways")
+                        .font(.largeTitle)
+                        .fontWeight(.bold)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.horizontal, 16)
+                    
+                    GiveawayListView(store: store.scope(state: \.giveawaylist, action: \.giveawaylist))
+                        .padding(.horizontal, 16)
+                    
+                    GiveawayListWithFiltrationView(store: store.scope(state: \.giveawayListWithFilter, action: \.giveawayListWithFilter))
+                        .padding(.horizontal, 16)
                 }
             }
+        }
     }
     
     private func headerView(viewStore: StoreOf<GiveawaysFeature>) -> some View {
@@ -46,18 +46,19 @@ struct GiveawaysView: View {
                     .fontWeight(.medium)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
+            
             ImageLoaderView(store: viewStore.scope(state: \.imageLoaderState, action: \.imageLoaderState))
                 .background(.white)
                 .clipShape(Circle())
                 .frame(width: 50)
         }
-        .padding(.horizontal, 16)
     }
 }
 
-
-#Preview {
-    GiveawaysView(store: Store(initialState: ComposedFeature.State()) {
-        ComposedFeature()
-    })
+struct GiveawaysView_Previews: PreviewProvider {
+    static var previews: some View {
+        GiveawaysView(store: Store(initialState: ComposedFeature.State()) {
+            ComposedFeature()
+        })
+    }
 }

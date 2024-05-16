@@ -16,7 +16,6 @@ struct GiveawayListWithFiltrationView: View {
     var body: some View {
         ZStack(alignment: .top) {
             Color.white.ignoresSafeArea()
-            
             VStack(alignment: .leading, spacing: 8) {
                 PlatformFilterListView(store: store.scope(state: \.filterList, action: \.filterList))
                 
