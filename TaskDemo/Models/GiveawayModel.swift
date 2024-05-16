@@ -29,3 +29,24 @@ struct Giveaway: Codable, Equatable, Identifiable {
         case openGiveaway = "open_giveaway"
     }
 }
+
+extension Giveaway {
+    static let mock: Giveaway = Giveaway(
+        id: 128,
+        title: "random",
+        worth: "ranndom",
+        thumbnail: "",
+        image: "",
+        description: "random",
+        instructions: "ranndom",
+        openGiveawayURL: "",
+        publishedDate: "",
+        type: "",
+        platforms: "",
+        endDate: "",
+        users: 5,
+        status: "",
+        gamerpowerURL: "",
+        openGiveaway: ""
+    )
+}

@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		271557A02BF5DE710060CD70 /* PlatformFilterListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2715579F2BF5DE710060CD70 /* PlatformFilterListView.swift */; };
+		271557A32BF5E13B0060CD70 /* PlatformFilterListFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271557A12BF5DE880060CD70 /* PlatformFilterListFeature.swift */; };
+		27156EC82BF495C800A70D11 /* GiveawayListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27156EC72BF495C800A70D11 /* GiveawayListView.swift */; };
+		27156ECC2BF49DAC00A70D11 /* GiveawayDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27156ECB2BF49DAC00A70D11 /* GiveawayDetailsView.swift */; };
+		27156ECE2BF49DBB00A70D11 /* GiveawayDetailsFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27156ECD2BF49DBB00A70D11 /* GiveawayDetailsFeature.swift */; };
+		27156ED02BF4D5A900A70D11 /* GiveawayListFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27156ECF2BF4D5A900A70D11 /* GiveawayListFeature.swift */; };
+		27156ED42BF4D67500A70D11 /* ComposedFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27156ED32BF4D67500A70D11 /* ComposedFeature.swift */; };
 		27404C532BF24CE400F73D56 /* GiveawayCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27404C522BF24CE400F73D56 /* GiveawayCellView.swift */; };
 		27404C552BF33D1900F73D56 /* GiveawayCellFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27404C542BF33D1900F73D56 /* GiveawayCellFeature.swift */; };
 		27404C582BF345FF00F73D56 /* ImageLoaderFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27404C572BF345FF00F73D56 /* ImageLoaderFeature.swift */; };
@@ -29,6 +36,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2715579F2BF5DE710060CD70 /* PlatformFilterListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformFilterListView.swift; sourceTree = "<group>"; };
+		271557A12BF5DE880060CD70 /* PlatformFilterListFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformFilterListFeature.swift; sourceTree = "<group>"; };
+		27156EC72BF495C800A70D11 /* GiveawayListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiveawayListView.swift; sourceTree = "<group>"; };
+		27156ECB2BF49DAC00A70D11 /* GiveawayDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiveawayDetailsView.swift; sourceTree = "<group>"; };
+		27156ECD2BF49DBB00A70D11 /* GiveawayDetailsFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiveawayDetailsFeature.swift; sourceTree = "<group>"; };
+		27156ECF2BF4D5A900A70D11 /* GiveawayListFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiveawayListFeature.swift; sourceTree = "<group>"; };
+		27156ED32BF4D67500A70D11 /* ComposedFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposedFeature.swift; sourceTree = "<group>"; };
 		27404C522BF24CE400F73D56 /* GiveawayCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiveawayCellView.swift; sourceTree = "<group>"; };
 		27404C542BF33D1900F73D56 /* GiveawayCellFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiveawayCellFeature.swift; sourceTree = "<group>"; };
 		27404C572BF345FF00F73D56 /* ImageLoaderFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoaderFeature.swift; sourceTree = "<group>"; };
@@ -63,6 +77,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2715579E2BF5DE4C0060CD70 /* PlatformList */ = {
+			isa = PBXGroup;
+			children = (
+				2715579F2BF5DE710060CD70 /* PlatformFilterListView.swift */,
+				271557A12BF5DE880060CD70 /* PlatformFilterListFeature.swift */,
+			);
+			path = PlatformList;
+			sourceTree = "<group>";
+		};
+		27156ECA2BF49D9C00A70D11 /* GiveawayDetails */ = {
+			isa = PBXGroup;
+			children = (
+				27156ECB2BF49DAC00A70D11 /* GiveawayDetailsView.swift */,
+				27156ECD2BF49DBB00A70D11 /* GiveawayDetailsFeature.swift */,
+			);
+			path = GiveawayDetails;
+			sourceTree = "<group>";
+		};
+		27156ED22BF4D62D00A70D11 /* GiveawayList */ = {
+			isa = PBXGroup;
+			children = (
+				27156EC72BF495C800A70D11 /* GiveawayListView.swift */,
+				27156ECF2BF4D5A900A70D11 /* GiveawayListFeature.swift */,
+			);
+			path = GiveawayList;
+			sourceTree = "<group>";
+		};
 		27404C562BF344A600F73D56 /* GiveawayCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -123,7 +164,9 @@
 		2771CCF02BF2238800984754 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				2715579E2BF5DE4C0060CD70 /* PlatformList */,
 				27DAFE492BF379CB00DD9FE1 /* PlatformCell */,
+				27156ED22BF4D62D00A70D11 /* GiveawayList */,
 				27404C562BF344A600F73D56 /* GiveawayCell */,
 			);
 			path = Components;
@@ -132,6 +175,7 @@
 		2771CCF12BF223A800984754 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				27156ECA2BF49D9C00A70D11 /* GiveawayDetails */,
 				2771CCF22BF224A600984754 /* Giveaways */,
 			);
 			path = Core;
@@ -142,6 +186,7 @@
 			children = (
 				2771CCE12BF220D200984754 /* GiveawaysView.swift */,
 				2771CCF32BF224CA00984754 /* GiveawaysFeature.swift */,
+				27156ED32BF4D67500A70D11 /* ComposedFeature.swift */,
 				2771CCF52BF225F400984754 /* GiveawaysClient.swift */,
 			);
 			path = Giveaways;
@@ -255,17 +300,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				271557A32BF5E13B0060CD70 /* PlatformFilterListFeature.swift in Sources */,
 				2771CCF92BF22C7100984754 /* GiveawayModel.swift in Sources */,
+				271557A02BF5DE710060CD70 /* PlatformFilterListView.swift in Sources */,
+				27156ECE2BF49DBB00A70D11 /* GiveawayDetailsFeature.swift in Sources */,
 				2771CCE22BF220D200984754 /* GiveawaysView.swift in Sources */,
+				27156ED02BF4D5A900A70D11 /* GiveawayListFeature.swift in Sources */,
+				27156ECC2BF49DAC00A70D11 /* GiveawayDetailsView.swift in Sources */,
 				277D9BFB2BF2405C002A5914 /* UserModel.swift in Sources */,
 				2771CCF42BF224CA00984754 /* GiveawaysFeature.swift in Sources */,
 				27404C582BF345FF00F73D56 /* ImageLoaderFeature.swift in Sources */,
+				27156EC82BF495C800A70D11 /* GiveawayListView.swift in Sources */,
 				277D9BF42BF23D1F002A5914 /* ImageLoaderView.swift in Sources */,
 				277D9BF92BF23F87002A5914 /* Constants.swift in Sources */,
 				2771CCE02BF220D200984754 /* TaskDemoApp.swift in Sources */,
 				27404C532BF24CE400F73D56 /* GiveawayCellView.swift in Sources */,
 				27DAFE4D2BF37A8600DD9FE1 /* PlatformCellFeature.swift in Sources */,
 				27DAFE4B2BF379DD00DD9FE1 /* PlatformCellView.swift in Sources */,
+				27156ED42BF4D67500A70D11 /* ComposedFeature.swift in Sources */,
 				2771CCF62BF225F400984754 /* GiveawaysClient.swift in Sources */,
 				27DAFE482BF3795800DD9FE1 /* Platform.swift in Sources */,
 				27404C552BF33D1900F73D56 /* GiveawayCellFeature.swift in Sources */,
@@ -410,7 +462,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -440,7 +492,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

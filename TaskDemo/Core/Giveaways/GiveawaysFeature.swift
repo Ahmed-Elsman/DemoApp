@@ -6,22 +6,23 @@
 //
 
 import ComposableArchitecture
+import Foundation
 
 @Reducer
 struct GiveawaysFeature {
     
     @ObservableState
     struct State: Equatable {
-        var giveaways: [Giveaway]?
         var currentUser: User = User.mock
-        var isloading = false
         var imageLoaderState = ImageLoaderFeature.State()
+//        var platformCellState: PlatformCellFeature.State = PlatformCellFeature.State(title: "aaa", isSelected: false)
+//        var selectedPlatform: Platform? = Platform(rawValue: "all")
     }
     
     enum Action {
-        case getGiveaways
-        case giveawaysResponse(Result<[Giveaway]?, Error>)
         case imageLoaderState(ImageLoaderFeature.Action)
+//        case platformCellAction(PlatformCellFeature.Action)
+//        case selectPlatform(Platform)
     }
     
     @Dependency (\.giveaways) var giveaways
@@ -32,28 +33,25 @@ struct GiveawaysFeature {
             ImageLoaderFeature()
         }
         
+//        Scope(state: \.platformCellState, action: \.platformCellAction) {
+//            PlatformCellFeature()
+//        }
+        
         Reduce { state, action in
             switch action {
-            case .getGiveaways:
-                state.giveaways = nil
-                state.isloading = true
-                return .run { send in
-                    let data = try await giveaways.fetch()
-                    await send(.giveawaysResponse(.success(data)))
-                }
-            case let .giveawaysResponse(result):
-                state.isloading = false
-                switch result {
-                case let .success(giveaways):
-                    state.giveaways = giveaways
-                    return .none
-                case .failure(_):
-                    // FIXME: need to handle error messages
-                    state.giveaways = []
-                    return .none
-                }
+                
             case .imageLoaderState:
                 return .none
+                
+//            case let .selectPlatform(platform):
+//                state.selectedPlatform = platform
+//                return .none
+//            case let .platformCellAction(action):
+//                switch action {
+//                case let .selectPlatfrom(platform):
+//                    state.selectedPlatform = platform
+//                    return .none
+//                }
             }
         }
     }

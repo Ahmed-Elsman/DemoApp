@@ -6,20 +6,20 @@
 //
 
 import SwiftUI
+import Foundation
 import ComposableArchitecture
 
 struct GiveawaysView: View {
     
-    let store: StoreOf<GiveawaysFeature>
+    let store: StoreOf<ComposedFeature>
     
     var body: some View {
-        WithViewStore(store, observe: { $0 }) { viewStore in
             ZStack(alignment: .top) {
                 Color.white.ignoresSafeArea()
                 ScrollView(.vertical) {
                     VStack(alignment: .leading, spacing: 8) {
                         
-                        headerView(viewStore: viewStore)
+                        headerView(viewStore: store.scope(state: \.giveawayhome, action: \.giveawayhome))
                         
                         VStack(alignment: .leading, spacing: 8) {
                             Text("Explore \nGames Giveaways")
@@ -28,20 +28,15 @@ struct GiveawaysView: View {
                                 .frame(maxWidth: .infinity, alignment: .leading)
                                 .padding(.horizontal, 16)
                             
-                            carouslView(viewStore: viewStore)
+                            GiveawayListView(store: store.scope(state: \.giveawaylist, action: \.giveawaylist))
                         }
-                        
                         
                     }
                 }
             }
-            .task {
-                store.send(.getGiveaways)
-            }
-        }
     }
     
-    private func headerView(viewStore: ViewStore<GiveawaysFeature.State, GiveawaysFeature.Action>) -> some View {
+    private func headerView(viewStore: StoreOf<GiveawaysFeature>) -> some View {
         HStack {
             VStack(alignment: .leading) {
                 Text("👋")
@@ -50,8 +45,7 @@ struct GiveawaysView: View {
                     .fontWeight(.medium)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
-            
-            ImageLoaderView(store: store.scope(state: \.imageLoaderState, action: \.imageLoaderState))
+            ImageLoaderView(store: viewStore.scope(state: \.imageLoaderState, action: \.imageLoaderState))
                 .background(.white)
                 .clipShape(Circle())
                 .frame(width: 50)
@@ -59,37 +53,13 @@ struct GiveawaysView: View {
         .padding(.horizontal, 16)
     }
     
-    private func carouslView(viewStore: ViewStore<GiveawaysFeature.State, GiveawaysFeature.Action>) -> some View {
-        LazyVStack {
-            if viewStore.isloading {
-                ProgressView()
-            }
-            if let giveaways = viewStore.giveaways {
-                ScrollView(.horizontal) {
-                    HStack(alignment: .top, spacing: 16) {
-                        ForEach(giveaways) { giveaway in
-                            GiveawayCellView(
-                                store: Store(
-                                    initialState: GiveawayCellFeature.State(
-                                        imageName: giveaway.image,
-                                        title: giveaway.title,
-                                        description: giveaway.description)
-                                ) {
-                                    GiveawayCellFeature()
-                                }
-                            )
-                        }
-                    }
-                }
-                .padding(.leading, 16)
-            }
-        }
-    }
+    
+    
 }
 
 
 #Preview {
-    GiveawaysView(store: Store(initialState: GiveawaysFeature.State()) {
-        GiveawaysFeature()
+    GiveawaysView(store: Store(initialState: ComposedFeature.State()) {
+        ComposedFeature()
     })
 }
