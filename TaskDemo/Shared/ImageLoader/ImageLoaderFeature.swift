@@ -18,13 +18,12 @@ struct ImageLoaderFeature {
     }
     
     enum Action {
-        case loadImage
     }
     
     var body: some Reducer<State, Action> {
         Reduce { state, action in
             switch action {
-            case .loadImage:
+            default:
                 return .none
             }
         }

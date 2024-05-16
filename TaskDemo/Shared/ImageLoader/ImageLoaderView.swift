@@ -13,23 +13,23 @@ struct ImageLoaderView: View {
     let store: StoreOf<ImageLoaderFeature>
     
     var body: some View {
-        WithViewStore(store, observe: {$0}) { viewStore in
-            Rectangle()
-                .opacity(0.0001)
-                .overlay(
-                    WebImage(url: URL(string: viewStore.imageUrlString))
-                        .resizable()
-                        .indicator(.activity)
-                        .aspectRatio(contentMode: viewStore.contentMode)
-                        .allowsHitTesting(false)
-                )
-                .clipped()
-                .onAppear {
-                    viewStore.send(.loadImage)
-                }
+        WithPerceptionTracking {
+            WithViewStore(store, observe: { $0 }) { viewStore in
+                Rectangle()
+                    .opacity(0.0001)
+                    .overlay(
+                        WebImage(url: URL(string: viewStore.imageUrlString))
+                            .resizable()
+                            .indicator(.activity)
+                            .aspectRatio(contentMode: viewStore.contentMode)
+                            .allowsHitTesting(false)
+                    )
+                    .clipped()
+            }
         }
     }
 }
+
 
 #Preview {
     ZStack {
@@ -50,3 +50,4 @@ struct ImageLoaderView: View {
         .padding(.vertical, 60)
     }
 }
+    
