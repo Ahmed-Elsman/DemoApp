@@ -9,13 +9,20 @@ import ComposableArchitecture
 import Foundation
 
 struct GiveawaysClient {
-    var fetch: () async throws -> [Giveaway]
+    var fetch: (Platform?) async throws -> [Giveaway]
 }
 
 extension GiveawaysClient: DependencyKey {
     static let liveValue = Self(
-        fetch: {
-            guard let url = URL(string: "https://www.gamerpower.com/api/giveaways") else {
+        fetch: { platform in
+            let urlString: String
+            if let platform = platform {
+                urlString = "https://www.gamerpower.com/api/giveaways?platform=\(platform.rawValue)"
+            } else {
+                urlString = "https://www.gamerpower.com/api/giveaways"
+            }
+            
+            guard let url = URL(string: urlString) else {
                 throw URLError(.badURL)
             }
             // FIXME: need to handle this using alamofire

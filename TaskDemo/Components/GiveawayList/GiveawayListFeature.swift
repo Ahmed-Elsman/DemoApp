@@ -33,7 +33,7 @@ struct GiveawayListFeature {
                 state.giveaways = nil
                 state.isloading = true
                 return .run { send in
-                    let data = try await giveaways.fetch()
+                    let data = try await giveaways.fetch(nil)
                     await send(.giveawaysResponse(.success(data)))
                 }
             case let .giveawaysResponse(result):

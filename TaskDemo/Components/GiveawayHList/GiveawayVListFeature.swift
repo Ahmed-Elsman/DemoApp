@@ -35,7 +35,7 @@ struct GiveawayVListFeature {
                 state.giveaways = nil
                 state.isloading = true
                 return .run { send in
-                    let data = try await giveaways.fetch()
+                    let data = try await giveaways.fetch(Platform.ios)
                     await send(.setCellSize(frameWidth))
                     await send(.giveawaysResponse(.success(data)))
                 }
