@@ -19,7 +19,7 @@ struct GiveawayCellView: View {
                 ) {
                     ImageLoaderFeature()
                 })
-                .frame(width: viewStore.imageSize, height: viewStore.imageSize/2)
+                .frame(width: viewStore.imageSize, height: viewStore.isCarousel ? viewStore.imageSize/2 : viewStore.imageSize)
                 .overlay(
                     LinearGradient(
                         gradient: Gradient(colors: [Color.black.opacity(0.5), Color.black.opacity(0.5), Color.black.opacity(0.5)]),
@@ -44,7 +44,7 @@ struct GiveawayCellView: View {
                 }
                 .padding(14)
             }
-            .frame(width: viewStore.imageSize, height: viewStore.imageSize/2)
+            .frame(width: viewStore.imageSize, height: viewStore.isCarousel ? viewStore.imageSize/2 : viewStore.imageSize)
             .cornerRadius(15)
             .onTapGesture {
                 viewStore.send(.giveawayTapped(viewStore.selectedGiveaway))
@@ -63,7 +63,8 @@ struct GiveawayCellView: View {
                     imageName: Constants.randomImage,
                     title: "",
                     description: "",
-                    selectedGiveaway: Giveaway.mock
+                    selectedGiveaway: Giveaway.mock,
+                    isCarousel: true
                 )
             ) {
                 GiveawayCellFeature()

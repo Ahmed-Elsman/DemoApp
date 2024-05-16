@@ -1,26 +1,28 @@
 //
-//  GiveawayListFeature.swift
+//  GiveawayVListFeature.swift
 //  TaskDemo
 //
-//  Created by Ahmed Elsman on 15/05/2024.
+//  Created by Ahmed Elsman on 16/05/2024.
 //
 
 import ComposableArchitecture
 import Foundation
 
 @Reducer
-struct GiveawayListFeature {
+struct GiveawayVListFeature {
     @ObservableState
     struct State: Equatable {
         var giveaways: [Giveaway]?
         var giveawaysStatesList: IdentifiedArrayOf<GiveawayCellFeature.State> = []
         var isloading = false
+        var cellSize: CGFloat = 300
     }
     
     enum Action {
-        case getGiveaways
+        case getGiveawaysList(frameWidth: CGFloat)
         case giveawaysResponse(Result<[Giveaway]?, Error>)
         case giveawayCellAction(GiveawayCellFeature.State.ID, GiveawayCellFeature.Action)
+        case setCellSize(CGFloat)
     }
     
     @Dependency (\.giveaways) var giveaways
@@ -29,11 +31,12 @@ struct GiveawayListFeature {
         
         Reduce { state, action in
             switch action {
-            case .getGiveaways:
+            case let .getGiveawaysList(frameWidth):
                 state.giveaways = nil
                 state.isloading = true
                 return .run { send in
                     let data = try await giveaways.fetch()
+                    await send(.setCellSize(frameWidth))
                     await send(.giveawaysResponse(.success(data)))
                 }
             case let .giveawaysResponse(result):
@@ -42,7 +45,7 @@ struct GiveawayListFeature {
                 case let .success(giveaways):
                     state.giveaways = giveaways
                     state.giveawaysStatesList = IdentifiedArray(uniqueElements: giveaways?.map { giveaway in
-                        GiveawayCellFeature.State(id: UUID(),imageName: giveaway.image, title: giveaway.title, description: giveaway.description, selectedGiveaway: giveaway, isCarousel: true)
+                        GiveawayCellFeature.State(id: UUID(),imageSize: state.cellSize,imageName: giveaway.image, title: giveaway.title, description: giveaway.description, selectedGiveaway: giveaway, isCarousel: false)
                     } ?? [])
                     return .none
                 case .failure(_):
@@ -52,6 +55,9 @@ struct GiveawayListFeature {
                     return .none
                 }
             case .giveawayCellAction:
+                return .none
+            case let .setCellSize(cellSize):
+                state.cellSize = cellSize
                 return .none
             }
         }

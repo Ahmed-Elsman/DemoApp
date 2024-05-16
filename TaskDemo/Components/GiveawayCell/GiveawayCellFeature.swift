@@ -19,14 +19,16 @@ struct GiveawayCellFeature {
         var title: String
         var description: String
         var selectedGiveaway: Giveaway
+        var isCarousel: Bool = true
         
-        init(id: UUID ,imageSize: CGFloat = 300, imageName: String, title: String, description: String, selectedGiveaway: Giveaway) {
+        init(id: UUID ,imageSize: CGFloat = 300, imageName: String, title: String, description: String, selectedGiveaway: Giveaway, isCarousel: Bool) {
             self.id = id
             self.imageSize = imageSize
             self.imageName = imageName
             self.title = title
             self.description = description
             self.selectedGiveaway = selectedGiveaway
+            self.isCarousel = isCarousel
         }
     }
     
