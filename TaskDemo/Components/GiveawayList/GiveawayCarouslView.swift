@@ -8,8 +8,8 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct GiveawayListView: View {
-    let store: StoreOf<GiveawayListFeature>
+struct GiveawayCarouslView: View {
+    let store: StoreOf<GiveawayCarouslFeature>
     
     var body: some View {
         WithPerceptionTracking {
@@ -19,7 +19,7 @@ struct GiveawayListView: View {
         }
     }
     
-    private func carouslView(viewStore: ViewStore<GiveawayListFeature.State, GiveawayListFeature.Action>) -> some View {
+    private func carouslView(viewStore: ViewStore<GiveawayCarouslFeature.State, GiveawayCarouslFeature.Action>) -> some View {
         LazyVStack {
             if viewStore.isloading {
                 ProgressView()
@@ -29,7 +29,7 @@ struct GiveawayListView: View {
                     ForEachStore(
                         store.scope(
                             state: \.giveawaysStatesList,
-                            action: GiveawayListFeature.Action.giveawayCellAction)) { childStore in
+                            action: GiveawayCarouslFeature.Action.giveawayCellAction)) { childStore in
                                 GiveawayCellView(store: childStore)
                             }
                 }
@@ -44,11 +44,11 @@ struct GiveawayListView: View {
 #Preview {
     ZStack {
         Color.white.ignoresSafeArea()
-        GiveawayListView(
+        GiveawayCarouslView(
             store: Store(
-                initialState: GiveawayListFeature.State()
+                initialState: GiveawayCarouslFeature.State()
             ) {
-                GiveawayListFeature()
+                GiveawayCarouslFeature()
             }
         )
     }

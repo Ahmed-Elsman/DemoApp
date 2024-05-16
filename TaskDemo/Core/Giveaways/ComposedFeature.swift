@@ -12,12 +12,12 @@ import ComposableArchitecture
 struct ComposedFeature {
     struct State: Equatable {
         var giveawayhome = GiveawaysFeature.State()
-        var giveawaylist = GiveawayListFeature.State()
+        var giveawaylist = GiveawayCarouslFeature.State()
         var giveawayListWithFilter = GiveawayListWithFiltrationFeature.State()
     }
     enum Action {
         case giveawayhome(GiveawaysFeature.Action)
-        case giveawaylist(GiveawayListFeature.Action)
+        case giveawaylist(GiveawayCarouslFeature.Action)
         case giveawayListWithFilter(GiveawayListWithFiltrationFeature.Action)
     }
     
@@ -28,7 +28,7 @@ struct ComposedFeature {
         }
         
         Scope(state: \.giveawaylist, action: \.giveawaylist) {
-            GiveawayListFeature()
+            GiveawayCarouslFeature()
         }
 
         Scope(state: \.giveawayListWithFilter, action: \.giveawayListWithFilter) {

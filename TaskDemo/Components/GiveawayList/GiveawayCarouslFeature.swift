@@ -9,7 +9,7 @@ import ComposableArchitecture
 import Foundation
 
 @Reducer
-struct GiveawayListFeature {
+struct GiveawayCarouslFeature {
     @ObservableState
     struct State: Equatable {
         var giveaways: [Giveaway]?
