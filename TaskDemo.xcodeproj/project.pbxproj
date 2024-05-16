@@ -19,6 +19,8 @@
 		27404C532BF24CE400F73D56 /* GiveawayCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27404C522BF24CE400F73D56 /* GiveawayCellView.swift */; };
 		27404C552BF33D1900F73D56 /* GiveawayCellFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27404C542BF33D1900F73D56 /* GiveawayCellFeature.swift */; };
 		27404C582BF345FF00F73D56 /* ImageLoaderFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27404C572BF345FF00F73D56 /* ImageLoaderFeature.swift */; };
+		27657F1A2BF616C400FEA898 /* GiveawayListWithFiltrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27657F192BF616C400FEA898 /* GiveawayListWithFiltrationView.swift */; };
+		27657F1C2BF616CD00FEA898 /* GiveawayListWithFiltrationFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27657F1B2BF616CD00FEA898 /* GiveawayListWithFiltrationFeature.swift */; };
 		2771CCE02BF220D200984754 /* TaskDemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2771CCDF2BF220D200984754 /* TaskDemoApp.swift */; };
 		2771CCE22BF220D200984754 /* GiveawaysView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2771CCE12BF220D200984754 /* GiveawaysView.swift */; };
 		2771CCE42BF220D400984754 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2771CCE32BF220D400984754 /* Assets.xcassets */; };
@@ -50,6 +52,8 @@
 		27404C522BF24CE400F73D56 /* GiveawayCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiveawayCellView.swift; sourceTree = "<group>"; };
 		27404C542BF33D1900F73D56 /* GiveawayCellFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiveawayCellFeature.swift; sourceTree = "<group>"; };
 		27404C572BF345FF00F73D56 /* ImageLoaderFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoaderFeature.swift; sourceTree = "<group>"; };
+		27657F192BF616C400FEA898 /* GiveawayListWithFiltrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiveawayListWithFiltrationView.swift; sourceTree = "<group>"; };
+		27657F1B2BF616CD00FEA898 /* GiveawayListWithFiltrationFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiveawayListWithFiltrationFeature.swift; sourceTree = "<group>"; };
 		2771CCDC2BF220D200984754 /* TaskDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaskDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2771CCDF2BF220D200984754 /* TaskDemoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDemoApp.swift; sourceTree = "<group>"; };
 		2771CCE12BF220D200984754 /* GiveawaysView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiveawaysView.swift; sourceTree = "<group>"; };
@@ -90,13 +94,13 @@
 			path = PlatformList;
 			sourceTree = "<group>";
 		};
-		271557A92BF601EC0060CD70 /* GiveawayHList */ = {
+		271557A92BF601EC0060CD70 /* GiveawayVList */ = {
 			isa = PBXGroup;
 			children = (
 				271557AE2BF6043A0060CD70 /* GiveawayVListView.swift */,
 				271557B02BF6048D0060CD70 /* GiveawayVListFeature.swift */,
 			);
-			path = GiveawayHList;
+			path = GiveawayVList;
 			sourceTree = "<group>";
 		};
 		27156ECA2BF49D9C00A70D11 /* GiveawayDetails */ = {
@@ -133,6 +137,15 @@
 				27404C572BF345FF00F73D56 /* ImageLoaderFeature.swift */,
 			);
 			path = ImageLoader;
+			sourceTree = "<group>";
+		};
+		27657F182BF6168600FEA898 /* GiveawayListWithFiltration */ = {
+			isa = PBXGroup;
+			children = (
+				27657F192BF616C400FEA898 /* GiveawayListWithFiltrationView.swift */,
+				27657F1B2BF616CD00FEA898 /* GiveawayListWithFiltrationFeature.swift */,
+			);
+			path = GiveawayListWithFiltration;
 			sourceTree = "<group>";
 		};
 		2771CCD32BF220D200984754 = {
@@ -177,7 +190,8 @@
 		2771CCF02BF2238800984754 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				271557A92BF601EC0060CD70 /* GiveawayHList */,
+				27657F182BF6168600FEA898 /* GiveawayListWithFiltration */,
+				271557A92BF601EC0060CD70 /* GiveawayVList */,
 				2715579E2BF5DE4C0060CD70 /* PlatformList */,
 				27DAFE492BF379CB00DD9FE1 /* PlatformCell */,
 				27156ED22BF4D62D00A70D11 /* GiveawayList */,
@@ -317,6 +331,7 @@
 				271557A32BF5E13B0060CD70 /* PlatformFilterListFeature.swift in Sources */,
 				2771CCF92BF22C7100984754 /* GiveawayModel.swift in Sources */,
 				271557A02BF5DE710060CD70 /* PlatformFilterListView.swift in Sources */,
+				27657F1A2BF616C400FEA898 /* GiveawayListWithFiltrationView.swift in Sources */,
 				27156ECE2BF49DBB00A70D11 /* GiveawayDetailsFeature.swift in Sources */,
 				2771CCE22BF220D200984754 /* GiveawaysView.swift in Sources */,
 				27156ED02BF4D5A900A70D11 /* GiveawayListFeature.swift in Sources */,
@@ -329,6 +344,7 @@
 				27156EC82BF495C800A70D11 /* GiveawayListView.swift in Sources */,
 				277D9BF42BF23D1F002A5914 /* ImageLoaderView.swift in Sources */,
 				277D9BF92BF23F87002A5914 /* Constants.swift in Sources */,
+				27657F1C2BF616CD00FEA898 /* GiveawayListWithFiltrationFeature.swift in Sources */,
 				2771CCE02BF220D200984754 /* TaskDemoApp.swift in Sources */,
 				27404C532BF24CE400F73D56 /* GiveawayCellView.swift in Sources */,
 				27DAFE4D2BF37A8600DD9FE1 /* PlatformCellFeature.swift in Sources */,
