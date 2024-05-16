@@ -42,7 +42,7 @@ struct GiveawayListFeature {
                 case let .success(giveaways):
                     state.giveaways = giveaways
                     state.giveawaysStatesList = IdentifiedArray(uniqueElements: giveaways?.map { giveaway in
-                        GiveawayCellFeature.State(id: UUID(),imageName: giveaway.image, title: giveaway.title, description: giveaway.description)
+                        GiveawayCellFeature.State(id: UUID(),imageName: giveaway.image, title: giveaway.title, description: giveaway.description, selectedGiveaway: giveaway)
                     } ?? [])
                     return .none
                 case .failure(_):

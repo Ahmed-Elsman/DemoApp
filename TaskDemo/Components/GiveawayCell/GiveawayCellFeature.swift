@@ -12,29 +12,35 @@ import ComposableArchitecture
 @Reducer
 struct GiveawayCellFeature {
     @ObservableState
-    struct State: Equatable {
+    struct State: Equatable, Identifiable {
+        let id: UUID
         var imageSize: CGFloat = 300
         var imageName: String
         var title: String
         var description: String
+        var selectedGiveaway: Giveaway
         
-        init(imageSize: CGFloat = 300, imageName: String, title: String, description: String) {
+        init(id: UUID ,imageSize: CGFloat = 300, imageName: String, title: String, description: String, selectedGiveaway: Giveaway) {
+            self.id = id
             self.imageSize = imageSize
             self.imageName = imageName
             self.title = title
             self.description = description
+            self.selectedGiveaway = selectedGiveaway
         }
     }
     
     enum Action {
-        case loadImage
+        case giveawayTapped(Giveaway)
     }
     
     var body: some Reducer<State, Action> {
         
         Reduce { state, action in
             switch action {
-            case .loadImage:
+            case let .giveawayTapped(giveaway):
+                print("\(giveaway.title)")
+                state.selectedGiveaway = giveaway
                 return .none
             }
         }

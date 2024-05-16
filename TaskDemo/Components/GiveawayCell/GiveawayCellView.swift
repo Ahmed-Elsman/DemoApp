@@ -46,8 +46,8 @@ struct GiveawayCellView: View {
             }
             .frame(width: viewStore.imageSize, height: viewStore.imageSize/2)
             .cornerRadius(15)
-            .onAppear {
-                viewStore.send(.loadImage)
+            .onTapGesture {
+                viewStore.send(.giveawayTapped(viewStore.selectedGiveaway))
             }
         }
     }
@@ -59,9 +59,11 @@ struct GiveawayCellView: View {
         GiveawayCellView(
             store: Store(
                 initialState: GiveawayCellFeature.State(
+                    id: UUID(),
                     imageName: Constants.randomImage,
                     title: "",
-                    description: ""
+                    description: "",
+                    selectedGiveaway: Giveaway.mock
                 )
             ) {
                 GiveawayCellFeature()
