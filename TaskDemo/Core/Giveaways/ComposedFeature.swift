@@ -13,10 +13,12 @@ struct ComposedFeature {
     struct State: Equatable {
         var giveawayhome = GiveawaysFeature.State()
         var giveawaylist = GiveawayListFeature.State()
+        var giveawayListWithFilter = GiveawayListWithFiltrationFeature.State()
     }
     enum Action {
         case giveawayhome(GiveawaysFeature.Action)
         case giveawaylist(GiveawayListFeature.Action)
+        case giveawayListWithFilter(GiveawayListWithFiltrationFeature.Action)
     }
     
     var body: some ReducerOf<Self> {
@@ -24,8 +26,13 @@ struct ComposedFeature {
         Scope(state: \.giveawayhome, action: \.giveawayhome) {
             GiveawaysFeature()
         }
+        
         Scope(state: \.giveawaylist, action: \.giveawaylist) {
             GiveawayListFeature()
+        }
+
+        Scope(state: \.giveawayListWithFilter, action: \.giveawayListWithFilter) {
+            GiveawayListWithFiltrationFeature()
         }
         
         Reduce { state, action in

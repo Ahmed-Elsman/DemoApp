@@ -17,7 +17,7 @@ struct GiveawaysView: View {
             ZStack(alignment: .top) {
                 Color.white.ignoresSafeArea()
                 ScrollView(.vertical) {
-                    VStack(alignment: .leading, spacing: 8) {
+                    LazyVStack(alignment: .leading, spacing: 8) {
                         
                         headerView(viewStore: store.scope(state: \.giveawayhome, action: \.giveawayhome))
                         
@@ -31,6 +31,7 @@ struct GiveawaysView: View {
                             GiveawayListView(store: store.scope(state: \.giveawaylist, action: \.giveawaylist))
                         }
                         
+                        GiveawayListWithFiltrationView(store: store.scope(state: \.giveawayListWithFilter, action: \.giveawayListWithFilter))
                     }
                 }
             }
@@ -52,9 +53,6 @@ struct GiveawaysView: View {
         }
         .padding(.horizontal, 16)
     }
-    
-    
-    
 }
 
 
