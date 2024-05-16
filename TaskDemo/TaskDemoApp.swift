@@ -11,10 +11,16 @@ import ComposableArchitecture
 @main
 struct TaskDemoApp: App {
     var body: some Scene {
+//        WindowGroup {
+//            GiveawaysView(store: Store(initialState: ComposedFeature.State()) {
+//                ComposedFeature()
+//                    ._printChanges()
+//            })
+//        }
+        
         WindowGroup {
-            GiveawaysView(store: Store(initialState: GiveawaysFeature.State()) {
-                GiveawaysFeature()
-                    ._printChanges()
+            GiveawayListView(store: Store(initialState: GiveawayListFeature.State()) {
+                GiveawayListFeature()
             })
         }
     }
