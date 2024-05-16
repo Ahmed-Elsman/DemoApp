@@ -16,13 +16,18 @@ struct GiveawayVListFeature {
         var giveawaysStatesList: IdentifiedArrayOf<GiveawayCellFeature.State> = []
         var isloading = false
         var cellSize: CGFloat = 300
+        var selectedPlatform: Platform = Platform.all
+        var frameWidth: CGFloat = 300
     }
     
     enum Action {
-        case getGiveawaysList(frameWidth: CGFloat)
+        case getGiveawaysList(frameWidth: CGFloat, platform: Platform)
         case giveawaysResponse(Result<[Giveaway]?, Error>)
         case giveawayCellAction(GiveawayCellFeature.State.ID, GiveawayCellFeature.Action)
         case setCellSize(CGFloat)
+        case setSelectedPlatform(CGFloat, Platform)
+        case getFilteredGiveaways(Platform)
+        case setFramWidth(CGFloat)
     }
     
     @Dependency (\.giveaways) var giveaways
@@ -31,11 +36,26 @@ struct GiveawayVListFeature {
         
         Reduce { state, action in
             switch action {
-            case let .getGiveawaysList(frameWidth):
+            case let .setFramWidth(frameWidth):
+                state.frameWidth = frameWidth
+                return .none
+            case let .getFilteredGiveaways(platform):
+                let frameWidth = state.frameWidth
+                return .run { send in
+                    await send(.setSelectedPlatform(frameWidth, platform))
+                }
+            case let .setSelectedPlatform(frameWidth, platform):
+                state.selectedPlatform = platform
+                return .run { send in
+                    await send(.setFramWidth(frameWidth))
+                    await send(.getGiveawaysList(frameWidth: frameWidth, platform: platform))
+                }
+            case let .getGiveawaysList(frameWidth, platform):
                 state.giveaways = nil
+                state.giveawaysStatesList = []
                 state.isloading = true
                 return .run { send in
-                    let data = try await giveaways.fetch(Platform.ios)
+                    let data = try await giveaways.fetch(platform)
                     await send(.setCellSize(frameWidth))
                     await send(.giveawaysResponse(.success(data)))
                 }

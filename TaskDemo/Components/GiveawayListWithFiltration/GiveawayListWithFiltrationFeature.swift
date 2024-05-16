@@ -14,10 +14,12 @@ struct GiveawayListWithFiltrationFeature {
     struct State: Equatable {
         var filterList = PlatformFilterListFeature.State()
         var giveawayVlist = GiveawayVListFeature.State()
+        var selectedPlatform: Platform = Platform.all
     }
     enum Action {
         case filterList(PlatformFilterListFeature.Action)
         case giveawayVlist(GiveawayVListFeature.Action)
+        case setSelectedPlatform(Platform)
     }
     
     var body: some ReducerOf<Self> {
@@ -30,8 +32,21 @@ struct GiveawayListWithFiltrationFeature {
         }
         
         Reduce { state, action in
-            // Core logic of the composed feature
-            return .none
+            switch action {
+            case let .filterList(.selectPlatform(platform)):
+                return .run { send in
+                    await send(.setSelectedPlatform(platform))
+                }
+            case let .setSelectedPlatform(platform):
+                state.selectedPlatform = platform
+                return .run { send in
+                    await send(.giveawayVlist(.getFilteredGiveaways(platform)))
+                }
+            case .giveawayVlist:
+                return .none
+            case .filterList:
+                return .none
+            }
         }
     }
 }

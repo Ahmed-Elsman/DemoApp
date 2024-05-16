@@ -17,7 +17,7 @@ struct GiveawayVListView: View {
                 GeometryReader { geometry in
                     listView(viewStore: viewStore)
                         .onAppear {
-                            viewStore.send(.getGiveawaysList(frameWidth: geometry.size.width))
+                            viewStore.send(.setSelectedPlatform(geometry.size.width, viewStore.selectedPlatform))
                         }
                 }
             }

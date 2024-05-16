@@ -41,7 +41,6 @@ struct GiveawayCellFeature {
         Reduce { state, action in
             switch action {
             case let .giveawayTapped(giveaway):
-                print("\(giveaway.title)")
                 state.selectedGiveaway = giveaway
                 return .none
             }

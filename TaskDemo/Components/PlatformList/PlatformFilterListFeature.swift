@@ -43,7 +43,6 @@ struct PlatformFilterListFeature {
                 }
                 
             case let .selectPlatform(platform):
-                print(platform.rawValue)
                 state.selectedPlatform = platform
                 state.platformStatesList = IdentifiedArrayOf(uniqueElements: state.platformStatesList.map { platformState in
                     PlatformCellFeature.State(
