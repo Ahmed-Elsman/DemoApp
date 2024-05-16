@@ -23,6 +23,9 @@ struct PlatformCellView: View {
                 .padding(.horizontal, 10)
                 .foregroundColor(viewStore.isSelected ? .black : .gray)
                 .cornerRadius(15)
+                .onTapGesture {
+                    viewStore.send(.selectPlatfrom(viewStore.platform))
+                }
         }
     }
 }
@@ -34,8 +37,10 @@ struct PlatformCellView: View {
             PlatformCellView(
                 store: Store(
                     initialState: PlatformCellFeature.State(
+                        id: UUID(),
                         title: "all",
-                        isSelected: true
+                        isSelected: true,
+                        platform: Platform.all
                     )
                 ) {
                     PlatformCellFeature()
@@ -45,8 +50,10 @@ struct PlatformCellView: View {
             PlatformCellView(
                 store: Store(
                     initialState: PlatformCellFeature.State(
-                        title: "pc",
-                        isSelected: false
+                        id: UUID(),
+                        title: "all",
+                        isSelected: false,
+                        platform: Platform.all
                     )
                 ) {
                     PlatformCellFeature()

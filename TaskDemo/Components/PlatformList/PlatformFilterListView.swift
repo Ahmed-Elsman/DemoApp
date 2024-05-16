@@ -1,5 +1,5 @@
 //
-//  PlatformFliterListView.swift
+//  PlatformFilterListView.swift
 //  TaskDemo
 //
 //  Created by Ahmed Elsman on 16/05/2024.
@@ -23,22 +23,17 @@ struct PlatformFilterListView: View {
     private func filterationView(viewStore: ViewStore<PlatformFilterListFeature.State, PlatformFilterListFeature.Action>) -> some View {
         ScrollView(.horizontal) {
             HStack(spacing: 8) {
-                ForEach(Platform.allCases, id: \.self) { platform in
-                    PlatformCellView(
-                        store: Store(
-                            initialState: PlatformCellFeature.State(
-                                title: platform.rawValue,
-                                isSelected: viewStore.selectedPlatform == platform
-                            )
-                        ) {
-                            PlatformCellFeature()
+                ForEachStore(
+                    store.scope(
+                        state: \.platformStatesList,
+                        action: PlatformFilterListFeature.Action.platformCellAction)) { childStore in
+                            PlatformCellView(store: childStore)
                         }
-                    ).onTapGesture {
-                        viewStore.send(.selectPlatform(platform))
-                    }
-                }
             }
             .padding(.horizontal, 16)
+        }
+        .onAppear {
+            viewStore.send(.setPlatforms)
         }
     }
 }

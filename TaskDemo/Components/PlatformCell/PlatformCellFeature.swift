@@ -6,30 +6,35 @@
 //
 
 import ComposableArchitecture
-
+import Foundation
 @Reducer
 struct PlatformCellFeature {
     
     @ObservableState
-    struct State: Equatable {
+    struct State: Equatable, Identifiable {
+        let id: UUID
         var title: String
         var isSelected: Bool
+        var platform: Platform
         
-        init(title: String, isSelected: Bool) {
+        init(id: UUID, title: String, isSelected: Bool, platform: Platform) {
+            self.id = id
             self.title = title
             self.isSelected = isSelected
+            self.platform = platform
         }
     }
     
     enum Action {
-        case toggleSelection
+        case selectPlatfrom(Platform)
     }
     
     var body: some Reducer<State, Action> {
         Reduce { state, action in
             switch action {
-            case .toggleSelection:
-                state.isSelected.toggle()
+            case let .selectPlatfrom(platform):
+                state.isSelected = true
+                state.platform = platform
                 return .none
             }
         }
