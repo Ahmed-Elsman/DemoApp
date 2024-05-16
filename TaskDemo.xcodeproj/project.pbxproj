@@ -112,13 +112,13 @@
 			path = GiveawayDetails;
 			sourceTree = "<group>";
 		};
-		27156ED22BF4D62D00A70D11 /* GiveawayList */ = {
+		27156ED22BF4D62D00A70D11 /* GiveawayCarousl */ = {
 			isa = PBXGroup;
 			children = (
 				27156EC72BF495C800A70D11 /* GiveawayCarouslView.swift */,
 				27156ECF2BF4D5A900A70D11 /* GiveawayCarouslFeature.swift */,
 			);
-			path = GiveawayList;
+			path = GiveawayCarousl;
 			sourceTree = "<group>";
 		};
 		27404C562BF344A600F73D56 /* GiveawayCell */ = {
@@ -194,7 +194,7 @@
 				271557A92BF601EC0060CD70 /* GiveawayVList */,
 				2715579E2BF5DE4C0060CD70 /* PlatformList */,
 				27DAFE492BF379CB00DD9FE1 /* PlatformCell */,
-				27156ED22BF4D62D00A70D11 /* GiveawayList */,
+				27156ED22BF4D62D00A70D11 /* GiveawayCarousl */,
 				27404C562BF344A600F73D56 /* GiveawayCell */,
 			);
 			path = Components;
