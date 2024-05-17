@@ -14,21 +14,21 @@ struct GiveawayListWithFiltrationView: View {
     let store: StoreOf<GiveawayListWithFiltrationFeature>
     
     var body: some View {
-        ZStack(alignment: .top) {
             Color.white.ignoresSafeArea()
-            VStack(alignment: .leading, spacing: 8) {
+            LazyVStack(alignment: .leading, spacing: 0) {
                 PlatformFilterListView(store: store.scope(state: \.filterList, action: \.filterList))
                 
                 GiveawayVListView(store: store.scope(state: \.giveawayVlist, action: \.giveawayVlist))
                     .padding(.horizontal, 16)
             }
-        }
     }
 }
 
 
 #Preview {
-    GiveawayListWithFiltrationView(store: Store(initialState: GiveawayListWithFiltrationFeature.State()) {
-        GiveawayListWithFiltrationFeature()
-    })
+    ZStack(alignment: .top) {
+        GiveawayListWithFiltrationView(store: Store(initialState: GiveawayListWithFiltrationFeature.State()) {
+            GiveawayListWithFiltrationFeature()
+        })
+    }
 }

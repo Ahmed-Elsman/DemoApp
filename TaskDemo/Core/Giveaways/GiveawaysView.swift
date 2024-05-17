@@ -14,13 +14,13 @@ struct GiveawaysView: View {
     let store: StoreOf<ComposedFeature>
     
     var body: some View {
-        ZStack(alignment: .top) {
-            Color.white.ignoresSafeArea()
-            
-            ScrollView(.vertical) {
-                VStack(alignment: .leading, spacing: 16) {
+        ScrollView {
+            ZStack(alignment: .top) {
+                LazyVStack(spacing: 5) {
+                    
                     headerView(viewStore: store.scope(state: \.giveawayhome, action: \.giveawayhome))
                         .padding(.horizontal, 16)
+                    
                     Text("Explore \nGames Giveaways")
                         .font(.largeTitle)
                         .fontWeight(.bold)
@@ -28,13 +28,13 @@ struct GiveawaysView: View {
                         .padding(.horizontal, 16)
                     
                     GiveawayCarouslView(store: store.scope(state: \.giveawaylist, action: \.giveawaylist))
-                        .padding(.horizontal, 16)
                     
                     GiveawayListWithFiltrationView(store: store.scope(state: \.giveawayListWithFilter, action: \.giveawayListWithFilter))
-                        .padding(.horizontal, 16)
+                    
                 }
             }
         }
+        .background(Color.white.ignoresSafeArea())
     }
     
     private func headerView(viewStore: StoreOf<GiveawaysFeature>) -> some View {
@@ -48,7 +48,7 @@ struct GiveawaysView: View {
             .frame(maxWidth: .infinity, alignment: .leading)
             
             ImageLoaderView(store: viewStore.scope(state: \.imageLoaderState, action: \.imageLoaderState))
-                .background(.white)
+                .background(Color.white)
                 .clipShape(Circle())
                 .frame(width: 50)
         }

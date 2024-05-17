@@ -17,7 +17,7 @@ struct GiveawayVListFeature {
         var isloading = false
         var cellSize: CGFloat = 300
         var selectedPlatform: Platform = Platform.ios
-        var frameWidth: CGFloat = 300
+        var frameWidth: CGFloat = 350
     }
     
     enum Action {
