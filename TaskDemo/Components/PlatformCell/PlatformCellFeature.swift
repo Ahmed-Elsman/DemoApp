@@ -10,7 +10,7 @@ import Foundation
 @Reducer
 struct PlatformCellFeature {
     
-    @ObservableState
+    
     struct State: Equatable, Identifiable {
         let id: UUID
         var title: String

@@ -12,35 +12,31 @@ struct GiveawayVListView: View {
     let store: StoreOf<GiveawayVListFeature>
     
     var body: some View {
-        WithPerceptionTracking {
+        
             WithViewStore(store, observe: { $0 }) { viewStore in
                 listView(viewStore: viewStore)
                     .onAppear {
                         viewStore.send(.setSelectedPlatform(viewStore.frameWidth, viewStore.selectedPlatform))
                     }
             }
-        }
+        
     }
     
     private func listView(viewStore: ViewStore<GiveawayVListFeature.State, GiveawayVListFeature.Action>) -> some View {
-//        ZStack(alignment: .top) {
-//            ScrollView {
-                LazyVStack {
-                    if viewStore.isloading {
-                        ProgressView()
+        LazyVStack {
+            if viewStore.isloading {
+                ProgressView()
+            }
+            ForEachStore(
+                store.scope(
+                    state: \.giveawaysStatesList,
+                    action: GiveawayVListFeature.Action.giveawayCellAction)) { childStore in
+                        GiveawayCellView(store: childStore)
                     }
-                    ForEachStore(
-                        store.scope(
-                            state: \.giveawaysStatesList,
-                            action: GiveawayVListFeature.Action.giveawayCellAction)) { childStore in
-                                GiveawayCellView(store: childStore)
-                            }
-                }
-                .padding(.horizontal, 16)
-                .padding(.top, 16)
-                .padding(.bottom, 16)
-//            }
-//        }
+        }
+        .padding(.horizontal, 16)
+        .padding(.top, 16)
+        .padding(.bottom, 16)
     }
 }
 

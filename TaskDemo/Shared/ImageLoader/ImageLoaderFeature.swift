@@ -11,19 +11,26 @@ import ComposableArchitecture
 
 @Reducer
 struct ImageLoaderFeature {
-    @ObservableState
+    
     struct State: Equatable {
-        var imageUrlString: String = Constants.randomImage
-        var contentMode: ContentMode = .fill
+        var imageUrlString: String?
+        var contentMode: ContentMode?
     }
     
     enum Action {
+        case setImageUrlString(String)
+        case setcontentMode(ContentMode)
     }
     
     var body: some Reducer<State, Action> {
         Reduce { state, action in
             switch action {
-            default:
+            case let .setImageUrlString(image):
+                state.imageUrlString = image
+                return .none
+                
+            case let .setcontentMode(contentMode):
+                state.contentMode = contentMode
                 return .none
             }
         }

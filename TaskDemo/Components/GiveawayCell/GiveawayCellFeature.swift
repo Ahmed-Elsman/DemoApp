@@ -11,7 +11,7 @@ import ComposableArchitecture
 
 @Reducer
 struct GiveawayCellFeature {
-    @ObservableState
+    
     struct State: Equatable, Identifiable {
         let id: UUID
         var imageSize: CGFloat = 300
@@ -20,6 +20,7 @@ struct GiveawayCellFeature {
         var description: String
         var selectedGiveaway: Giveaway
         var isCarousel: Bool = true
+        var imageLoaderState = ImageLoaderFeature.State()
         
         init(id: UUID ,imageSize: CGFloat = 300, imageName: String, title: String, description: String, selectedGiveaway: Giveaway, isCarousel: Bool) {
             self.id = id
@@ -34,14 +35,31 @@ struct GiveawayCellFeature {
     
     enum Action {
         case giveawayTapped(Giveaway)
+        case imageLoaderAction(ImageLoaderFeature.Action)
+        case setGiveawayImage(String)
+        case setGiveawayImageContentMode(ContentMode)
     }
     
     var body: some Reducer<State, Action> {
+        
+        Scope(state: \.imageLoaderState, action: \.imageLoaderAction) {
+            ImageLoaderFeature()
+        }
         
         Reduce { state, action in
             switch action {
             case let .giveawayTapped(giveaway):
                 state.selectedGiveaway = giveaway
+                return .none
+            case let .setGiveawayImage(image):
+                return .run { send in
+                    await send(.imageLoaderAction(.setImageUrlString(image)))
+                }
+            case let .setGiveawayImageContentMode(contentMode):
+                return .run { send in
+                    await send(.imageLoaderAction(.setcontentMode(contentMode)))
+                }
+            case .imageLoaderAction:
                 return .none
             }
         }

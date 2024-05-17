@@ -30,7 +30,6 @@ struct GiveawaysView: View {
                     GiveawayCarouslView(store: store.scope(state: \.giveawaylist, action: \.giveawaylist))
                     
                     GiveawayListWithFiltrationView(store: store.scope(state: \.giveawayListWithFilter, action: \.giveawayListWithFilter))
-                    
                 }
             }
         }
@@ -38,20 +37,28 @@ struct GiveawaysView: View {
     }
     
     private func headerView(viewStore: StoreOf<GiveawaysFeature>) -> some View {
+        
         HStack {
-            VStack(alignment: .leading) {
-                Text("👋")
-                Text("Hello, \(viewStore.currentUser.firstName)")
-                    .font(.title3)
-                    .fontWeight(.medium)
+            if let currentUser = viewStore.currentUser {
+                VStack(alignment: .leading) {
+                    Text("👋")
+                    Text("Hello, \(currentUser.firstName)")
+                        .font(.title3)
+                        .fontWeight(.medium)
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+                
+                ImageLoaderView(store: viewStore.scope(state: \.imageLoaderState, action: \.imageLoaderAction))
+                    .background(Color.white)
+                    .clipShape(Circle())
+                    .frame(width: 50)
             }
-            .frame(maxWidth: .infinity, alignment: .leading)
-            
-            ImageLoaderView(store: viewStore.scope(state: \.imageLoaderState, action: \.imageLoaderState))
-                .background(Color.white)
-                .clipShape(Circle())
-                .frame(width: 50)
         }
+        .onAppear {
+            viewStore.send(.setCurrentUser(User.mock))
+            viewStore.send(.setUserImageContentMode(.fill))
+        }
+        
     }
 }
 

@@ -13,11 +13,11 @@ struct PlatformFilterListView: View {
     let store: StoreOf<PlatformFilterListFeature>
     
     var body: some View {
-        WithPerceptionTracking {
+        
             WithViewStore(store, observe: { $0 }) { viewStore in
                 filterationView(viewStore: viewStore)
             }
-        }
+        
     }
     
     private func filterationView(viewStore: ViewStore<PlatformFilterListFeature.State, PlatformFilterListFeature.Action>) -> some View {

@@ -10,7 +10,7 @@ import Foundation
 
 @Reducer
 struct GiveawayVListFeature {
-    @ObservableState
+    
     struct State: Equatable {
         var giveaways: [Giveaway]?
         var giveawaysStatesList: IdentifiedArrayOf<GiveawayCellFeature.State> = []

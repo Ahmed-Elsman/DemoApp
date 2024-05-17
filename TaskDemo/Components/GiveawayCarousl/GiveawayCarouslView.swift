@@ -12,11 +12,11 @@ struct GiveawayCarouslView: View {
     let store: StoreOf<GiveawayCarouslFeature>
     
     var body: some View {
-        WithPerceptionTracking {
+        
             WithViewStore(store, observe: { $0 }) { viewStore in
                 carouslView(viewStore: viewStore)
             }
-        }
+        
     }
     
     private func carouslView(viewStore: ViewStore<GiveawayCarouslFeature.State, GiveawayCarouslFeature.Action>) -> some View {
@@ -25,7 +25,7 @@ struct GiveawayCarouslView: View {
                 ProgressView()
             }
             ScrollView(.horizontal) {
-                HStack(alignment: .top, spacing: 16) {
+                LazyHStack(alignment: .top, spacing: 16) {
                     ForEachStore(
                         store.scope(
                             state: \.giveawaysStatesList,

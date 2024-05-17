@@ -12,7 +12,7 @@ import SwiftUI
 @Reducer
 struct GiveawayDetailsFeature {
     
-    @ObservableState
+    
     struct State: Equatable {
         var giveaway: String?
     }

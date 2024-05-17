@@ -11,7 +11,7 @@ import Foundation
 @Reducer
 struct PlatformFilterListFeature {
     
-    @ObservableState
+    
     struct State: Equatable {
         var selectedPlatform: Platform? = Platform(rawValue: "all")
         var platformStatesList: IdentifiedArrayOf<PlatformCellFeature.State> = []

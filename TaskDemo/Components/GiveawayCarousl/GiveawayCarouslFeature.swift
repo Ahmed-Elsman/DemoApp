@@ -10,7 +10,7 @@ import Foundation
 
 @Reducer
 struct GiveawayCarouslFeature {
-    @ObservableState
+    
     struct State: Equatable {
         var giveaways: [Giveaway]?
         var giveawaysStatesList: IdentifiedArrayOf<GiveawayCellFeature.State> = []
@@ -51,6 +51,9 @@ struct GiveawayCarouslFeature {
                     state.giveawaysStatesList = []
                     return .none
                 }
+                
+                
+                
             case .giveawayCellAction:
                 return .none
             }

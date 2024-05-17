@@ -6,29 +6,48 @@
 //
 
 import ComposableArchitecture
-import Foundation
+import SwiftUI
 
 @Reducer
 struct GiveawaysFeature {
     
     @ObservableState
     struct State: Equatable {
-        var currentUser: User = User.mock
+        var currentUser: User?
         var imageLoaderState = ImageLoaderFeature.State()
     }
     
     enum Action {
-        case imageLoaderState(ImageLoaderFeature.Action)
+        case imageLoaderAction(ImageLoaderFeature.Action)
+        case setCurrentUser(User)
+        case setUserImage(String)
+        case setUserImageContentMode(ContentMode)
     }
     
     var body: some Reducer<State, Action> {
         
-        Scope(state: \.imageLoaderState, action: \.imageLoaderState) {
+        Scope(state: \.imageLoaderState, action: \.imageLoaderAction) {
             ImageLoaderFeature()
         }
         
         Reduce { state, action in
-           return .none
+            switch action {
+            case let .setCurrentUser(user):
+                state.currentUser = user
+                return .run { send in
+                    await send(.setUserImage(user.image))
+                }
+            case let .setUserImage(userImage):
+                return .run { send in
+                    await send(.imageLoaderAction(.setImageUrlString(userImage)))
+                }
+            case let .setUserImageContentMode(contentMode):
+                return .run { send in
+                    await send(.imageLoaderAction(.setcontentMode(contentMode)))
+                }
+            case .imageLoaderAction:
+                return .none
+            }
         }
     }
 }

@@ -13,15 +13,17 @@ struct ImageLoaderView: View {
     let store: StoreOf<ImageLoaderFeature>
     
     var body: some View {
-        WithPerceptionTracking {
-            WithViewStore(store, observe: { $0 }) { viewStore in
+        
+        WithViewStore(store, observe: { $0 }) { viewStore in
+            if let imageString = viewStore.imageUrlString,
+               let contentMode = viewStore.contentMode {
                 Rectangle()
                     .opacity(0.0001)
                     .overlay(
-                        WebImage(url: URL(string: viewStore.imageUrlString))
+                        WebImage(url: URL(string: imageString))
                             .resizable()
                             .indicator(.activity)
-                            .aspectRatio(contentMode: viewStore.contentMode)
+                            .aspectRatio(contentMode: contentMode)
                             .allowsHitTesting(false)
                     )
                     .clipped()
@@ -50,4 +52,4 @@ struct ImageLoaderView: View {
         .padding(.vertical, 60)
     }
 }
-    
+

@@ -14,11 +14,15 @@ struct GiveawayCellView: View {
     var body: some View {
         WithViewStore(store, observe: { $0 }) { viewStore in
             ZStack(alignment:.top) {
+                /*
                 ImageLoaderView(store: Store(
-                    initialState: ImageLoaderFeature.State(imageUrlString: viewStore.imageName)
+                    initialState: ImageLoaderFeature.State(imageUrlString: viewStore.imageName, contentMode: .fill)
                 ) {
                     ImageLoaderFeature()
                 })
+                */
+                
+                ImageLoaderView(store: store.scope(state: \.imageLoaderState, action: \.imageLoaderAction))
                 .frame(width: viewStore.imageSize, height: viewStore.isCarousel ? viewStore.imageSize/2 : viewStore.imageSize)
                 .overlay(
                     LinearGradient(
@@ -48,6 +52,10 @@ struct GiveawayCellView: View {
             .cornerRadius(15)
             .onTapGesture {
                 viewStore.send(.giveawayTapped(viewStore.selectedGiveaway))
+            }
+            .onAppear {
+                viewStore.send(.setGiveawayImage(viewStore.imageName))
+                viewStore.send(.setGiveawayImageContentMode(ContentMode.fill))
             }
         }
     }
