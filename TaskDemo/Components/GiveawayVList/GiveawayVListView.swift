@@ -16,7 +16,7 @@ struct GiveawayVListView: View {
             WithViewStore(store, observe: { $0 }) { viewStore in
                 listView(viewStore: viewStore)
                     .onAppear {
-                        viewStore.send(.setSelectedPlatform(viewStore.frameWidth, viewStore.selectedPlatform))
+//                        viewStore.send(.setSelectedPlatform(viewStore.frameWidth, viewStore.selectedPlatform))
                     }
             }
         
@@ -29,7 +29,7 @@ struct GiveawayVListView: View {
             }
             ForEachStore(
                 store.scope(
-                    state: \.giveawaysStatesList,
+                    state: \.filteredGiveawaysStatesList,
                     action: GiveawayVListFeature.Action.giveawayCellAction)) { childStore in
                         GiveawayCellView(store: childStore)
                     }

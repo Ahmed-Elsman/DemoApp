@@ -12,22 +12,25 @@ import Foundation
 struct GiveawayVListFeature {
     
     struct State: Equatable {
-        var giveaways: [Giveaway]?
-        var giveawaysStatesList: IdentifiedArrayOf<GiveawayCellFeature.State> = []
+        var filteredGiveaways: [Giveaway]?
+        var allGiveaways: [Giveaway]?
+        var filteredGiveawaysStatesList: IdentifiedArrayOf<GiveawayCellFeature.State> = []
+        var allGiveawaysStatesList: IdentifiedArrayOf<GiveawayCellFeature.State> = []
         var isloading = false
         var cellSize: CGFloat = 300
-        var selectedPlatform: Platform = Platform.ios
+        var selectedPlatform: Platform = Platform.all
         var frameWidth: CGFloat = 350
     }
     
     enum Action {
-        case getGiveawaysList(frameWidth: CGFloat, platform: Platform)
+        case getFilteredGiveawaysList(frameWidth: CGFloat, platform: Platform)
         case giveawaysResponse(Result<[Giveaway]?, Error>)
         case giveawayCellAction(GiveawayCellFeature.State.ID, GiveawayCellFeature.Action)
         case setCellSize(CGFloat)
         case setSelectedPlatform(CGFloat, Platform)
         case getFilteredGiveaways(Platform)
         case setFramWidth(CGFloat)
+        case setAllGiveaways([Giveaway])
     }
     
     @Dependency (\.giveaways) var giveaways
@@ -36,6 +39,15 @@ struct GiveawayVListFeature {
         
         Reduce { state, action in
             switch action {
+            case let .setAllGiveaways(allGiveaways):
+                state.allGiveaways = allGiveaways
+                state.allGiveawaysStatesList = IdentifiedArray(uniqueElements: allGiveaways.map { giveaway in
+                    GiveawayCellFeature.State(id: UUID(),imageSize: state.cellSize,imageName: giveaway.image, title: giveaway.title, description: giveaway.description, selectedGiveaway: giveaway, isCarousel: false)
+                })
+                let frameWidth = state.frameWidth
+                return .run { send in
+                    await send(.getFilteredGiveawaysList(frameWidth: frameWidth, platform: Platform.all))
+                }
             case let .setFramWidth(frameWidth):
                 state.frameWidth = frameWidth
                 return .none
@@ -48,30 +60,38 @@ struct GiveawayVListFeature {
                 state.selectedPlatform = platform
                 return .run { send in
                     await send(.setFramWidth(frameWidth))
-                    await send(.getGiveawaysList(frameWidth: frameWidth, platform: platform))
+                    await send(.getFilteredGiveawaysList(frameWidth: frameWidth, platform: platform))
                 }
-            case let .getGiveawaysList(frameWidth, platform):
-                state.giveaways = nil
-                state.giveawaysStatesList = []
-                state.isloading = true
-                return .run { send in
-                    let data = try await giveaways.fetch(platform)
-                    await send(.setCellSize(frameWidth))
-                    await send(.giveawaysResponse(.success(data)))
+            case let .getFilteredGiveawaysList(frameWidth, platform):
+                if platform == Platform.all {
+                    state.filteredGiveaways = state.allGiveaways
+                    state.filteredGiveawaysStatesList = state.allGiveawaysStatesList
+                    return .run { send in
+                        await send(.setCellSize(frameWidth))
+                    }
+                } else {
+                    state.filteredGiveaways = nil
+                    state.filteredGiveawaysStatesList = []
+                    state.isloading = true
+                    return .run { send in
+                        let data = try await giveaways.fetch(platform)
+                        await send(.setCellSize(frameWidth))
+                        await send(.giveawaysResponse(.success(data)))
+                    }
                 }
             case let .giveawaysResponse(result):
                 state.isloading = false
                 switch result {
                 case let .success(giveaways):
-                    state.giveaways = giveaways
-                    state.giveawaysStatesList = IdentifiedArray(uniqueElements: giveaways?.map { giveaway in
+                    state.filteredGiveaways = giveaways
+                    state.filteredGiveawaysStatesList = IdentifiedArray(uniqueElements: giveaways?.map { giveaway in
                         GiveawayCellFeature.State(id: UUID(),imageSize: state.cellSize,imageName: giveaway.image, title: giveaway.title, description: giveaway.description, selectedGiveaway: giveaway, isCarousel: false)
                     } ?? [])
                     return .none
                 case .failure(_):
                     // FIXME: need to handle error messages
-                    state.giveaways = []
-                    state.giveawaysStatesList = []
+                    state.filteredGiveaways = []
+                    state.filteredGiveawaysStatesList = []
                     return .none
                 }
             case .giveawayCellAction:
@@ -81,7 +101,7 @@ struct GiveawayVListFeature {
                 return .none
             }
         }
-        .forEach(\.giveawaysStatesList, action: /Action.giveawayCellAction) {
+        .forEach(\.filteredGiveawaysStatesList, action: /Action.giveawayCellAction) {
             GiveawayCellFeature()
         }
     }

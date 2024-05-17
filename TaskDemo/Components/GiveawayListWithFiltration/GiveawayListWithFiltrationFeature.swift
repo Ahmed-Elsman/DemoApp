@@ -38,9 +38,13 @@ struct GiveawayListWithFiltrationFeature {
                     await send(.setSelectedPlatform(platform))
                 }
             case let .setSelectedPlatform(platform):
-                state.selectedPlatform = platform
-                return .run { send in
-                    await send(.giveawayVlist(.getFilteredGiveaways(platform)))
+                if state.selectedPlatform != platform {
+                    state.selectedPlatform = platform
+                    return .run { send in
+                        await send(.giveawayVlist(.getFilteredGiveaways(platform)))
+                    }
+                } else {
+                    return .none
                 }
             case .giveawayVlist:
                 return .none
