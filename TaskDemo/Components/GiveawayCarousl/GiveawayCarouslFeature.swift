@@ -14,6 +14,7 @@ struct GiveawayCarouslFeature {
     struct State: Equatable {
         var giveaways: [Giveaway]?
         var giveawaysStatesList: IdentifiedArrayOf<GiveawayCellFeature.State> = []
+        var giveawaysLoaded = false
         var isloading = false
         var giveawayVListState = GiveawayVListFeature.State()
     }
@@ -51,6 +52,7 @@ struct GiveawayCarouslFeature {
                     state.giveawaysStatesList = IdentifiedArray(uniqueElements: giveaways?.map { giveaway in
                         GiveawayCellFeature.State(id: UUID(),imageName: giveaway.image, title: giveaway.title, description: giveaway.description, selectedGiveaway: giveaway, isCarousel: true)
                     } ?? [])
+                    state.giveawaysLoaded = true
                     return .run { send in
                         if let allGiveaways = giveaways {
                             await send(.setAllGiveawaysForFiltration(allGiveaways))

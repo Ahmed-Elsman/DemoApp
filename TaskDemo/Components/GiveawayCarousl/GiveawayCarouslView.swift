@@ -14,6 +14,11 @@ struct GiveawayCarouslView: View {
     var body: some View {
         WithViewStore(store, observe: { $0 }) { viewStore in
             carouslView(viewStore: viewStore)
+                .onAppear {
+                    if !viewStore.giveawaysLoaded {
+                        viewStore.send(.getGiveaways)
+                    }
+                }
         }
     }
     
@@ -33,8 +38,6 @@ struct GiveawayCarouslView: View {
                 }
                 .padding(.leading, 16)
             }
-        } .onAppear {
-            viewStore.send(.getGiveaways)
         }
     }
 }
