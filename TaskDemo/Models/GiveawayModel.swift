@@ -49,4 +49,43 @@ extension Giveaway {
         gamerpowerURL: "",
         openGiveaway: ""
     )
+    
+    static let mockedArray: [Giveaway] = [
+        Giveaway(
+            id: 128,
+            title: "random",
+            worth: "ranndom",
+            thumbnail: "",
+            image: "",
+            description: "random",
+            instructions: "ranndom",
+            openGiveawayURL: "",
+            publishedDate: "",
+            type: "",
+            platforms: "",
+            endDate: "",
+            users: 5,
+            status: "",
+            gamerpowerURL: "",
+            openGiveaway: ""
+        ),
+        Giveaway(
+            id: 129,
+            title: "random",
+            worth: "ranndom",
+            thumbnail: "",
+            image: "",
+            description: "random",
+            instructions: "ranndom",
+            openGiveawayURL: "",
+            publishedDate: "",
+            type: "",
+            platforms: "",
+            endDate: "",
+            users: 5,
+            status: "",
+            gamerpowerURL: "",
+            openGiveaway: ""
+        )
+    ]
 }
