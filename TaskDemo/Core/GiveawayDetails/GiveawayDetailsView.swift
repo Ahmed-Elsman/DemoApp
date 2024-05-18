@@ -15,9 +15,9 @@ struct GiveawayDetailsView: View {
     var body: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
             NavigationView {
-                Text("\(viewStore.giveaway ?? "")")
+                Text("\(viewStore.giveaway?.title ?? "")")
             }
-            .navigationTitle(Text(viewStore.giveaway ?? ""))
+            .navigationTitle(Text(viewStore.giveaway?.title ?? ""))
             .onAppear {
                 // add here setting data for view
             }
@@ -26,9 +26,12 @@ struct GiveawayDetailsView: View {
 }
 
 #Preview {
-    NavigationStack {
-        GiveawayDetailsView(store: Store(initialState: GiveawayDetailsFeature.State(giveaway: Giveaway.mock.title), reducer: {
-            GiveawayDetailsFeature()
-        }))
+    NavigationView {
+        GiveawayDetailsView(
+            store: Store(initialState: GiveawayDetailsFeature.State(
+                giveaway: Giveaway.mock)) {
+                GiveawayDetailsFeature()
+            }
+        )
     }
 }

@@ -12,21 +12,21 @@ import SwiftUI
 @Reducer
 struct GiveawayDetailsFeature {
     
-    
     struct State: Equatable {
-        var giveaway: String?
+        var giveaway: Giveaway?
     }
     
     enum Action {
-        
+        case setGiveawayDetails(Giveaway)
     }
     
     var body: some ReducerOf<Self> {
         Reduce { state, action in
             switch action {
-                
+            case let .setGiveawayDetails(giveaway):
+                state.giveaway = giveaway
+                return .none
             }
-            return .none
         }
     }
 }

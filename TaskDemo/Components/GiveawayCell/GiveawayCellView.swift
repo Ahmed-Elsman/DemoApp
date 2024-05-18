@@ -13,49 +13,56 @@ struct GiveawayCellView: View {
     
     var body: some View {
         WithViewStore(store, observe: { $0 }) { viewStore in
-            ZStack(alignment:.top) {
-                /*
-                ImageLoaderView(store: Store(
-                    initialState: ImageLoaderFeature.State(imageUrlString: viewStore.imageName, contentMode: .fill)
-                ) {
-                    ImageLoaderFeature()
-                })
-                */
-                
-                ImageLoaderView(store: store.scope(state: \.imageLoaderState, action: \.imageLoaderAction))
-                .frame(width: viewStore.imageSize, height: viewStore.isCarousel ? viewStore.imageSize/2 : viewStore.imageSize)
-                .overlay(
-                    LinearGradient(
-                        gradient: Gradient(colors: [Color.black.opacity(0.5), Color.black.opacity(0.5), Color.black.opacity(0.5)]),
-                        startPoint: .top,
-                        endPoint: .bottom
-                    )
+            NavigationLink(
+                destination: GiveawayDetailsView(
+                    store: Store(
+                        initialState: GiveawayDetailsFeature.State(giveaway: viewStore.selectedGiveaway)
+                    ) {
+                        GiveawayDetailsFeature()
+                    }
+                ),
+                isActive: viewStore.binding(
+                    get: \.navigateToDetails,
+                    send: GiveawayCellFeature.Action.navigateToDetails
                 )
-                VStack(alignment: .leading) {
-                    Text(viewStore.title)
-                        .font(.callout)
-                        .fontWeight(.bold)
-                        .lineLimit(2)
-                        .foregroundColor(.white)
-                        .frame(maxWidth: .infinity, alignment: .leading)
+            ) {
+                ZStack(alignment:.top) {
                     
-                    Text(viewStore.description)
-                        .font(.caption)
-                        .fontWeight(.bold)
-                        .lineLimit(3)
-                        .foregroundColor(Color.white.opacity(0.5))
-                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
+                    ImageLoaderView(store: store.scope(state: \.imageLoaderState, action: \.imageLoaderAction))
+                        .frame(width: viewStore.imageSize, height: viewStore.isCarousel ? viewStore.imageSize/2 : viewStore.imageSize)
+                        .overlay(
+                            LinearGradient(
+                                gradient: Gradient(colors: [Color.black.opacity(0.5), Color.black.opacity(0.5), Color.black.opacity(0.5)]),
+                                startPoint: .top,
+                                endPoint: .bottom
+                            )
+                        )
+                    VStack(alignment: .leading) {
+                        Text(viewStore.title)
+                            .font(.callout)
+                            .fontWeight(.bold)
+                            .lineLimit(2)
+                            .foregroundColor(.white)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                        
+                        Text(viewStore.description)
+                            .font(.caption)
+                            .fontWeight(.bold)
+                            .lineLimit(3)
+                            .foregroundColor(Color.white.opacity(0.5))
+                            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
+                    }
+                    .padding(14)
                 }
-                .padding(14)
-            }
-            .frame(width: viewStore.imageSize, height: viewStore.isCarousel ? viewStore.imageSize/2 : viewStore.imageSize)
-            .cornerRadius(15)
-            .onTapGesture {
-                viewStore.send(.giveawayTapped(viewStore.selectedGiveaway))
-            }
-            .onAppear {
-                viewStore.send(.setGiveawayImage(viewStore.imageName))
-                viewStore.send(.setGiveawayImageContentMode(ContentMode.fill))
+                .frame(width: viewStore.imageSize, height: viewStore.isCarousel ? viewStore.imageSize/2 : viewStore.imageSize)
+                .cornerRadius(15)
+                .onTapGesture {
+                    viewStore.send(.giveawayTapped(viewStore.selectedGiveaway))
+                }
+                .onAppear {
+                    viewStore.send(.setGiveawayImage(viewStore.imageName))
+                    viewStore.send(.setGiveawayImageContentMode(ContentMode.fill))
+                }
             }
         }
     }

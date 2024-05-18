@@ -21,6 +21,7 @@ struct GiveawayCellFeature {
         var selectedGiveaway: Giveaway
         var isCarousel: Bool = true
         var imageLoaderState = ImageLoaderFeature.State()
+        var navigateToDetails: Bool = false
         
         init(id: UUID ,imageSize: CGFloat = 300, imageName: String, title: String, description: String, selectedGiveaway: Giveaway, isCarousel: Bool) {
             self.id = id
@@ -38,6 +39,7 @@ struct GiveawayCellFeature {
         case imageLoaderAction(ImageLoaderFeature.Action)
         case setGiveawayImage(String)
         case setGiveawayImageContentMode(ContentMode)
+        case navigateToDetails(Bool)
     }
     
     var body: some Reducer<State, Action> {
@@ -50,6 +52,7 @@ struct GiveawayCellFeature {
             switch action {
             case let .giveawayTapped(giveaway):
                 state.selectedGiveaway = giveaway
+                state.navigateToDetails = true
                 return .none
             case let .setGiveawayImage(image):
                 return .run { send in
@@ -60,6 +63,9 @@ struct GiveawayCellFeature {
                     await send(.imageLoaderAction(.setcontentMode(contentMode)))
                 }
             case .imageLoaderAction:
+                return .none
+            case let .navigateToDetails(navigate):
+                state.navigateToDetails = navigate
                 return .none
             }
         }

@@ -14,6 +14,7 @@ struct GiveawaysView: View {
     let store: StoreOf<ComposedFeature>
     
     var body: some View {
+        NavigationView {
             ScrollView {
                 ZStack(alignment: .top) {
                     LazyVStack(spacing: 5) {
@@ -31,8 +32,9 @@ struct GiveawaysView: View {
                         
                         GiveawayListWithFiltrationView(store: store.scope(state: \.giveawayListWithFilter, action: \.giveawayListWithFilterAction))
                     }
+                }
+                .background(Color.white.ignoresSafeArea())
             }
-            .background(Color.white.ignoresSafeArea())
         }
     }
     
