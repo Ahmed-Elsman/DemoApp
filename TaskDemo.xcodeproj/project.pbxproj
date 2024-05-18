@@ -29,7 +29,6 @@
 		2771CCF42BF224CA00984754 /* GiveawaysFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2771CCF32BF224CA00984754 /* GiveawaysFeature.swift */; };
 		2771CCF62BF225F400984754 /* GiveawaysClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2771CCF52BF225F400984754 /* GiveawaysClient.swift */; };
 		2771CCF92BF22C7100984754 /* GiveawayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2771CCF82BF22C7100984754 /* GiveawayModel.swift */; };
-		277D9BF12BF23C46002A5914 /* SwiftfulUI in Frameworks */ = {isa = PBXBuildFile; productRef = 277D9BF02BF23C46002A5914 /* SwiftfulUI */; };
 		277D9BF42BF23D1F002A5914 /* ImageLoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277D9BF32BF23D1F002A5914 /* ImageLoaderView.swift */; };
 		277D9BF72BF23F3B002A5914 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 277D9BF62BF23F3B002A5914 /* SDWebImageSwiftUI */; };
 		277D9BF92BF23F87002A5914 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277D9BF82BF23F87002A5914 /* Constants.swift */; };
@@ -77,7 +76,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				277D9BF72BF23F3B002A5914 /* SDWebImageSwiftUI in Frameworks */,
-				277D9BF12BF23C46002A5914 /* SwiftfulUI in Frameworks */,
 				2771CCEF2BF222A000984754 /* ComposableArchitecture in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -266,7 +264,6 @@
 			name = TaskDemo;
 			packageProductDependencies = (
 				2771CCEE2BF222A000984754 /* ComposableArchitecture */,
-				277D9BF02BF23C46002A5914 /* SwiftfulUI */,
 				277D9BF62BF23F3B002A5914 /* SDWebImageSwiftUI */,
 			);
 			productName = TaskDemo;
@@ -299,7 +296,6 @@
 			mainGroup = 2771CCD32BF220D200984754;
 			packageReferences = (
 				2771CCED2BF222A000984754 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
-				277D9BEF2BF23C46002A5914 /* XCRemoteSwiftPackageReference "SwiftfulUI" */,
 				277D9BF52BF23F3B002A5914 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 			);
 			productRefGroup = 2771CCDD2BF220D200984754 /* Products */;
@@ -502,9 +498,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = co.elsman.TaskDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -532,9 +531,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = co.elsman.TaskDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -570,14 +572,6 @@
 				minimumVersion = 1.10.4;
 			};
 		};
-		277D9BEF2BF23C46002A5914 /* XCRemoteSwiftPackageReference "SwiftfulUI" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SwiftfulThinking/SwiftfulUI.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.2.0;
-			};
-		};
 		277D9BF52BF23F3B002A5914 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI.git";
@@ -593,11 +587,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2771CCED2BF222A000984754 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
 			productName = ComposableArchitecture;
-		};
-		277D9BF02BF23C46002A5914 /* SwiftfulUI */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 277D9BEF2BF23C46002A5914 /* XCRemoteSwiftPackageReference "SwiftfulUI" */;
-			productName = SwiftfulUI;
 		};
 		277D9BF62BF23F3B002A5914 /* SDWebImageSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
