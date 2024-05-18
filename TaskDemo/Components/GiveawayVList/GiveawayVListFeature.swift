@@ -37,15 +37,27 @@ struct GiveawayVListFeature {
     
     var body: some Reducer<State, Action> {
         
-        Reduce { state, action in
+        Reduce {
+            state,
+            action in
             switch action {
             case let .setAllGiveaways(allGiveaways):
                 state.allGiveaways = allGiveaways
-                state.allGiveawaysStatesList = IdentifiedArray(uniqueElements: allGiveaways.map { giveaway in
-                    GiveawayCellFeature.State(id: UUID(),imageSize: state.cellSize,imageName: giveaway.image, title: giveaway.title, description: giveaway.description, selectedGiveaway: giveaway, isCarousel: false)
+                state.allGiveawaysStatesList = IdentifiedArray(uniqueElements: allGiveaways.map {
+                    giveaway in
+                    GiveawayCellFeature.State(
+                        id: UUID(),
+                        imageSize: state.frameWidth,
+                        imageName: giveaway.image,
+                        title: giveaway.title,
+                        description: giveaway.description,
+                        selectedGiveaway: giveaway,
+                        isCarousel: false
+                    )
                 })
                 let frameWidth = state.frameWidth
                 return .run { send in
+                    await send(.setCellSize(frameWidth))
                     await send(.getFilteredGiveawaysList(frameWidth: frameWidth, platform: Platform.all))
                 }
             case let .setFramWidth(frameWidth):
@@ -66,9 +78,7 @@ struct GiveawayVListFeature {
                 if platform == Platform.all {
                     state.filteredGiveaways = state.allGiveaways
                     state.filteredGiveawaysStatesList = state.allGiveawaysStatesList
-                    return .run { send in
-                        await send(.setCellSize(frameWidth))
-                    }
+                    return .none
                 } else {
                     state.filteredGiveaways = nil
                     state.filteredGiveawaysStatesList = []
@@ -84,8 +94,17 @@ struct GiveawayVListFeature {
                 switch result {
                 case let .success(giveaways):
                     state.filteredGiveaways = giveaways
-                    state.filteredGiveawaysStatesList = IdentifiedArray(uniqueElements: giveaways?.map { giveaway in
-                        GiveawayCellFeature.State(id: UUID(),imageSize: state.cellSize,imageName: giveaway.image, title: giveaway.title, description: giveaway.description, selectedGiveaway: giveaway, isCarousel: false)
+                    state.filteredGiveawaysStatesList = IdentifiedArray(uniqueElements: giveaways?.map {
+                        giveaway in
+                        GiveawayCellFeature.State(
+                            id: UUID(),
+                            imageSize: state.cellSize,
+                            imageName: giveaway.image,
+                            title: giveaway.title,
+                            description: giveaway.description,
+                            selectedGiveaway: giveaway,
+                            isCarousel: false
+                        )
                     } ?? [])
                     return .none
                 case .failure(_):

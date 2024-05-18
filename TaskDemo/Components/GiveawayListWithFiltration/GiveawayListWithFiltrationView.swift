@@ -16,9 +16,9 @@ struct GiveawayListWithFiltrationView: View {
     var body: some View {
             Color.white.ignoresSafeArea()
             LazyVStack(alignment: .leading, spacing: 0) {
-                PlatformFilterListView(store: store.scope(state: \.filterList, action: \.filterList))
+                PlatformFilterListView(store: store.scope(state: \.filterList, action: \.filterListAction))
                 
-                GiveawayVListView(store: store.scope(state: \.giveawayVlist, action: \.giveawayVlist))
+                GiveawayVListView(store: store.scope(state: \.giveawayVlist, action: \.giveawayVlistAction))
                     .padding(.horizontal, 16)
             }
     }

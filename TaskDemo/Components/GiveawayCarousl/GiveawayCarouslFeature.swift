@@ -63,10 +63,8 @@ struct GiveawayCarouslFeature {
                     return .none
                 }
                 
-            case let .setAllGiveawaysForFiltration(allGiveaways):
-                return .run { send in
-                    await send(.giveawayVListAction(.setAllGiveaways(allGiveaways)))
-                }
+            case .setAllGiveawaysForFiltration:
+                return .none
             case .giveawayVListAction:
                 return .none
             case .giveawayCellAction:

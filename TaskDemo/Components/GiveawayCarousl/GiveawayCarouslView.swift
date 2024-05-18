@@ -12,11 +12,9 @@ struct GiveawayCarouslView: View {
     let store: StoreOf<GiveawayCarouslFeature>
     
     var body: some View {
-        
-            WithViewStore(store, observe: { $0 }) { viewStore in
-                carouslView(viewStore: viewStore)
-            }
-        
+        WithViewStore(store, observe: { $0 }) { viewStore in
+            carouslView(viewStore: viewStore)
+        }
     }
     
     private func carouslView(viewStore: ViewStore<GiveawayCarouslFeature.State, GiveawayCarouslFeature.Action>) -> some View {

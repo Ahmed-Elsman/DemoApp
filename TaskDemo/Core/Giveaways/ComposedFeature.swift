@@ -11,33 +11,45 @@ import ComposableArchitecture
 @Reducer
 struct ComposedFeature {
     struct State: Equatable {
-        var giveawayhome = GiveawaysFeature.State()
-        var giveawaylist = GiveawayCarouslFeature.State()
+        var giveaway = GiveawaysFeature.State()
+        var giveawayCarousl = GiveawayCarouslFeature.State()
         var giveawayListWithFilter = GiveawayListWithFiltrationFeature.State()
+        var allGiveaways: [Giveaway]?
     }
     enum Action {
-        case giveawayhome(GiveawaysFeature.Action)
-        case giveawaylist(GiveawayCarouslFeature.Action)
-        case giveawayListWithFilter(GiveawayListWithFiltrationFeature.Action)
+        case giveawayAction(GiveawaysFeature.Action)
+        case giveawayCarouslAction(GiveawayCarouslFeature.Action)
+        case giveawayListWithFilterAction(GiveawayListWithFiltrationFeature.Action)
     }
     
     var body: some ReducerOf<Self> {
         
-        Scope(state: \.giveawayhome, action: \.giveawayhome) {
+        Scope(state: \.giveaway, action: \.giveawayAction) {
             GiveawaysFeature()
         }
         
-        Scope(state: \.giveawaylist, action: \.giveawaylist) {
+        Scope(state: \.giveawayCarousl, action: \.giveawayCarouslAction) {
             GiveawayCarouslFeature()
         }
 
-        Scope(state: \.giveawayListWithFilter, action: \.giveawayListWithFilter) {
+        Scope(state: \.giveawayListWithFilter, action: \.giveawayListWithFilterAction) {
             GiveawayListWithFiltrationFeature()
         }
         
         Reduce { state, action in
-            // Core logic of the composed feature
-            return .none
+            switch action {
+            case let .giveawayCarouslAction(.setAllGiveawaysForFiltration(giveaways)):
+                state.allGiveaways = giveaways
+                return .run { send in
+                    await send(.giveawayListWithFilterAction(.setAllGiveaways(giveaways)))
+                }
+            case .giveawayCarouslAction:
+                return .none
+            case .giveawayAction:
+                return .none
+            case .giveawayListWithFilterAction:
+                return .none
+            }
         }
     }
 }

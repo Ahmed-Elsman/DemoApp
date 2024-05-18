@@ -3,4 +3,85 @@
    uuid = "0A25493A-4882-4B11-9B22-98066B75229D"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1396CFF8-6A61-4769-960B-F248F375A436"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TaskDemo/Core/Giveaways/ComposedFeature.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A028B118-316A-4312-BE2C-822063345F45"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TaskDemo/Core/Giveaways/ComposedFeature.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "A028B118-316A-4312-BE2C-822063345F45 - cc29c8e80102ccf5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for closure #1 @Sendable (ComposableArchitecture.Send&lt;TaskDemo.ComposedFeature.Action&gt;) async -&gt; () in closure #4 (inout TaskDemo.ComposedFeature.State, TaskDemo.ComposedFeature.Action) -&gt; ComposableArchitecture.Effect&lt;TaskDemo.ComposedFeature.Action&gt; in TaskDemo.ComposedFeature.body.getter : some"
+                  moduleName = "TaskDemo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/a.elsman/Desktop/TaskDemo/TaskDemo/Core/Giveaways/ComposedFeature.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "44"
+                  endingLineNumber = "44"
+                  offsetFromSymbolStart = "73">
+               </Location>
+               <Location
+                  uuid = "A028B118-316A-4312-BE2C-822063345F45 - 8050a2329ded52f2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) suspend resume partial function for closure #1 @Sendable (ComposableArchitecture.Send&lt;TaskDemo.ComposedFeature.Action&gt;) async -&gt; () in closure #4 (inout TaskDemo.ComposedFeature.State, TaskDemo.ComposedFeature.Action) -&gt; ComposableArchitecture.Effect&lt;TaskDemo.ComposedFeature.Action&gt; in TaskDemo.ComposedFeature.body.getter : some"
+                  moduleName = "TaskDemo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/a.elsman/Desktop/TaskDemo/TaskDemo/Core/Giveaways/ComposedFeature.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "44"
+                  endingLineNumber = "44"
+                  offsetFromSymbolStart = "49">
+               </Location>
+               <Location
+                  uuid = "A028B118-316A-4312-BE2C-822063345F45 - b7fb955d1879f0f3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for closure #1 @Sendable (ComposableArchitecture.Send&lt;TaskDemo.ComposedFeature.Action&gt;) async -&gt; () in closure #4 (inout TaskDemo.ComposedFeature.State, TaskDemo.ComposedFeature.Action) -&gt; ComposableArchitecture.Effect&lt;TaskDemo.ComposedFeature.Action&gt; in TaskDemo.ComposedFeature.body.getter : some"
+                  moduleName = "TaskDemo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/a.elsman/Desktop/TaskDemo/TaskDemo/Core/Giveaways/ComposedFeature.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "44"
+                  endingLineNumber = "44"
+                  offsetFromSymbolStart = "63">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

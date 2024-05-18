@@ -14,26 +14,26 @@ struct GiveawaysView: View {
     let store: StoreOf<ComposedFeature>
     
     var body: some View {
-        ScrollView {
-            ZStack(alignment: .top) {
-                LazyVStack(spacing: 5) {
-                    
-                    headerView(viewStore: store.scope(state: \.giveawayhome, action: \.giveawayhome))
-                        .padding(.horizontal, 16)
-                    
-                    Text("Explore \nGames Giveaways")
-                        .font(.largeTitle)
-                        .fontWeight(.bold)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding(.horizontal, 16)
-                    
-                    GiveawayCarouslView(store: store.scope(state: \.giveawaylist, action: \.giveawaylist))
-                    
-                    GiveawayListWithFiltrationView(store: store.scope(state: \.giveawayListWithFilter, action: \.giveawayListWithFilter))
-                }
+            ScrollView {
+                ZStack(alignment: .top) {
+                    LazyVStack(spacing: 5) {
+                        
+                        headerView(viewStore: store.scope(state: \.giveaway, action: \.giveawayAction))
+                            .padding(.horizontal, 16)
+                        
+                        Text("Explore \nGames Giveaways")
+                            .font(.largeTitle)
+                            .fontWeight(.bold)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .padding(.horizontal, 16)
+                        
+                        GiveawayCarouslView(store: store.scope(state: \.giveawayCarousl, action: \.giveawayCarouslAction))
+                        
+                        GiveawayListWithFiltrationView(store: store.scope(state: \.giveawayListWithFilter, action: \.giveawayListWithFilterAction))
+                    }
             }
+            .background(Color.white.ignoresSafeArea())
         }
-        .background(Color.white.ignoresSafeArea())
     }
     
     private func headerView(viewStore: StoreOf<GiveawaysFeature>) -> some View {
