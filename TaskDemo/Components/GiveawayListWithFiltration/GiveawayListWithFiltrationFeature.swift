@@ -13,13 +13,12 @@ import ComposableArchitecture
 struct GiveawayListWithFiltrationFeature {
     struct State: Equatable {
         var filterList = PlatformFilterListFeature.State()
-        var giveawayVlist = GiveawayVListFeature.State()
+        var giveawayVList = GiveawayVListFeature.State()
         var selectedPlatform: Platform = Platform.all
-        var allGiveaways: [Giveaway]?
     }
     enum Action {
         case filterListAction(PlatformFilterListFeature.Action)
-        case giveawayVlistAction(GiveawayVListFeature.Action)
+        case giveawayVListAction(GiveawayVListFeature.Action)
         case setSelectedPlatform(Platform)
         case setAllGiveaways([Giveaway])
     }
@@ -29,31 +28,28 @@ struct GiveawayListWithFiltrationFeature {
         Scope(state: \.filterList, action: \.filterListAction) {
             PlatformFilterListFeature()
         }
-        Scope(state: \.giveawayVlist, action: \.giveawayVlistAction) {
+        Scope(state: \.giveawayVList, action: \.giveawayVListAction) {
             GiveawayVListFeature()
         }
         
         Reduce { state, action in
             switch action {
             case let .setAllGiveaways(allGiveaways):
-                state.allGiveaways = allGiveaways
                 return .run { send in
-                    await send(.giveawayVlistAction(.setAllGiveaways(allGiveaways)))
+                    await send(.giveawayVListAction(.setAllGiveaways(allGiveaways)))
                 }
             case let .filterListAction(.selectPlatform(platform)):
                 return .run { send in
                     await send(.setSelectedPlatform(platform))
                 }
-            case let .setSelectedPlatform(platform):
-                if state.selectedPlatform != platform {
-                    state.selectedPlatform = platform
-                    return .run { send in
-                        await send(.giveawayVlistAction(.getFilteredGiveaways(platform)))
-                    }
-                } else {
-                    return .none
+            case let .setSelectedPlatform(platform) where state.selectedPlatform != platform:
+                state.selectedPlatform = platform
+                return .run { send in
+                    await send(.giveawayVListAction(.getFilteredGiveaways(platform)))
                 }
-            case .giveawayVlistAction:
+            case .setSelectedPlatform:
+                return .none
+            case .giveawayVListAction:
                 return .none
             case .filterListAction:
                 return .none

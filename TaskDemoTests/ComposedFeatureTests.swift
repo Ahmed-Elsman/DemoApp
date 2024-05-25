@@ -27,10 +27,6 @@ final class ComposedFeatureTests: XCTestCase {
             $0.allGiveaways = MockData.giveaways
         }
         
-        await store.receive(\.giveawayListWithFilterAction) {
-            $0.giveawayListWithFilter.allGiveaways = MockData.giveaways
-        }
-        
         store.exhaustivity = .off
     }
 }
