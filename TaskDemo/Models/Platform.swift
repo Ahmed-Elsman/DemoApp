@@ -7,6 +7,6 @@
 
 import Foundation
 
-enum Platform: String, CaseIterable, Equatable {
+enum Platform: String, CaseIterable {
     case all, pc, steam, ios, android
 }
