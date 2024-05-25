@@ -16,7 +16,7 @@ struct GiveawayVListFeature {
         var allGiveaways: [Giveaway]?
         var filteredGiveawaysStatesList: IdentifiedArrayOf<GiveawayCellFeature.State> = []
         var allGiveawaysStatesList: IdentifiedArrayOf<GiveawayCellFeature.State> = []
-        var isloading = false
+        var isLoading = false
         var cellSize: CGFloat = 300
         var selectedPlatform: Platform = Platform.all
         var frameWidth: CGFloat = 350
@@ -37,9 +37,7 @@ struct GiveawayVListFeature {
     
     var body: some Reducer<State, Action> {
         
-        Reduce {
-            state,
-            action in
+        Reduce {state, action in
             switch action {
             case let .setAllGiveaways(allGiveaways):
                 state.allGiveaways = allGiveaways
@@ -82,7 +80,7 @@ struct GiveawayVListFeature {
                 } else {
                     state.filteredGiveaways = nil
                     state.filteredGiveawaysStatesList = []
-                    state.isloading = true
+                    state.isLoading = true
                     return .run { send in
                         let data = try await giveaways.fetch(platform)
                         await send(.setCellSize(frameWidth))
@@ -90,7 +88,7 @@ struct GiveawayVListFeature {
                     }
                 }
             case let .giveawaysResponse(result):
-                state.isloading = false
+                state.isLoading = false
                 switch result {
                 case let .success(giveaways):
                     state.filteredGiveaways = giveaways
