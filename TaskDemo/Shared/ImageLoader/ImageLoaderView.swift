@@ -40,7 +40,7 @@ struct ImageLoaderView: View {
         ImageLoaderView(
             store: Store(
                 initialState: ImageLoaderFeature.State(
-                    imageUrlString: Constants.randomImage,
+                    imageUrlString: "https://picsum.photos/600/600",
                     contentMode: .fill
                 )
             ) {

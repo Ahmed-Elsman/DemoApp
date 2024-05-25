@@ -36,7 +36,6 @@
 		2771CCF92BF22C7100984754 /* GiveawayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2771CCF82BF22C7100984754 /* GiveawayModel.swift */; };
 		277D9BF42BF23D1F002A5914 /* ImageLoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277D9BF32BF23D1F002A5914 /* ImageLoaderView.swift */; };
 		277D9BF72BF23F3B002A5914 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 277D9BF62BF23F3B002A5914 /* SDWebImageSwiftUI */; };
-		277D9BF92BF23F87002A5914 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277D9BF82BF23F87002A5914 /* Constants.swift */; };
 		277D9BFB2BF2405C002A5914 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277D9BFA2BF2405C002A5914 /* UserModel.swift */; };
 		27DAFE482BF3795800DD9FE1 /* Platform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27DAFE472BF3795800DD9FE1 /* Platform.swift */; };
 		27DAFE4B2BF379DD00DD9FE1 /* PlatformCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27DAFE4A2BF379DD00DD9FE1 /* PlatformCellView.swift */; };
@@ -84,7 +83,6 @@
 		2771CCF72BF2267500984754 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		2771CCF82BF22C7100984754 /* GiveawayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiveawayModel.swift; sourceTree = "<group>"; };
 		277D9BF32BF23D1F002A5914 /* ImageLoaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageLoaderView.swift; sourceTree = "<group>"; };
-		277D9BF82BF23F87002A5914 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		277D9BFA2BF2405C002A5914 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		27DAFE472BF3795800DD9FE1 /* Platform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Platform.swift; sourceTree = "<group>"; };
 		27DAFE4A2BF379DD00DD9FE1 /* PlatformCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformCellView.swift; sourceTree = "<group>"; };
@@ -264,7 +262,6 @@
 			isa = PBXGroup;
 			children = (
 				27404C592BF3471800F73D56 /* ImageLoader */,
-				277D9BF82BF23F87002A5914 /* Constants.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -423,7 +420,6 @@
 				271557AF2BF6043B0060CD70 /* GiveawayVListView.swift in Sources */,
 				27156EC82BF495C800A70D11 /* GiveawayCarouslView.swift in Sources */,
 				277D9BF42BF23D1F002A5914 /* ImageLoaderView.swift in Sources */,
-				277D9BF92BF23F87002A5914 /* Constants.swift in Sources */,
 				27657F1C2BF616CD00FEA898 /* GiveawayListWithFiltrationFeature.swift in Sources */,
 				2771CCE02BF220D200984754 /* TaskDemoApp.swift in Sources */,
 				27404C532BF24CE400F73D56 /* GiveawayCellView.swift in Sources */,

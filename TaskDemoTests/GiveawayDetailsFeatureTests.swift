@@ -54,7 +54,7 @@ final class GiveawayDetailsFeatureTests: XCTestCase {
             GiveawayDetailsFeature()
         }
         
-        let imageUrl = Constants.randomImage
+        let imageUrl = "https://picsum.photos/600/600"
         
         await store.send(.setGiveawayImage(imageUrl))
         

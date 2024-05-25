@@ -75,7 +75,7 @@ struct GiveawayCellView: View {
             store: Store(
                 initialState: GiveawayCellFeature.State(
                     id: UUID(),
-                    imageName: Constants.randomImage,
+                    imageName: "https://picsum.photos/600/600",
                     title: "",
                     description: "",
                     selectedGiveaway: Giveaway.mock,

@@ -9,16 +9,14 @@ import Foundation
 
 struct User: Codable, Equatable, Identifiable {
     let id: Int
-    let firstName, lastName: String
-    let image: String
+    let name: String
+    let imageUrl: String
 
-    
     static var mock: User {
         User(
             id: 111,
-            firstName: "Ahmed",
-            lastName: "Elsman",
-            image: Constants.randomImage
+            name: "Ahmed",
+            imageUrl: "https://picsum.photos/600/600"
         )
     }
 }

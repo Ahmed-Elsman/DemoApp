@@ -35,11 +35,11 @@ final class GiveawaysFeatureTests: XCTestCase {
                 GiveawaysFeature()
             }
         
-        await store.send(.setUserImage(User.mock.image))
+        await store.send(.setUserImage(User.mock.imageUrl))
         
         await store.receive(\.imageLoaderAction) {
             // Verify the imageLoaderAction was sent
-            $0.imageLoaderState.imageUrlString = User.mock.image
+            $0.imageLoaderState.imageUrlString = User.mock.imageUrl
         }
     }
     

@@ -35,7 +35,7 @@ struct GiveawaysFeature {
             case let .setCurrentUser(user):
                 state.currentUser = user
                 return .run { send in
-                    await send(.setUserImage(user.image))
+                    await send(.setUserImage(user.imageUrl))
                 }
             case let .setUserImage(userImage):
                 return .run { send in

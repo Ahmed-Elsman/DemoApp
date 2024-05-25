@@ -44,7 +44,7 @@ struct GiveawaysView: View {
             if let currentUser = viewStore.currentUser {
                 VStack(alignment: .leading) {
                     Text("👋")
-                    Text("Hello, \(currentUser.firstName)")
+                    Text("Hello, \(currentUser.name)")
                         .font(.title3)
                         .fontWeight(.medium)
                 }
