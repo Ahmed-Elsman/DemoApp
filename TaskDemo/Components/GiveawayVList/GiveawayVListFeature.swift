@@ -11,11 +11,13 @@ import Foundation
 @Reducer
 struct GiveawayVListFeature {
     
+    typealias IdentifiedGiveawayCellStates = IdentifiedArrayOf<GiveawayCellFeature.State>
+    
     struct State: Equatable {
         var filteredGiveaways: [Giveaway]?
         var allGiveaways: [Giveaway]?
-        var filteredGiveawaysStatesList: IdentifiedArrayOf<GiveawayCellFeature.State> = []
-        var allGiveawaysStatesList: IdentifiedArrayOf<GiveawayCellFeature.State> = []
+        var filteredGiveawaysStatesList: IdentifiedGiveawayCellStates = []
+        var allGiveawaysStatesList: IdentifiedGiveawayCellStates = []
         var isLoading = false
         var cellSize: CGFloat = 350
         var selectedPlatform: Platform = .all
@@ -24,7 +26,7 @@ struct GiveawayVListFeature {
     enum Action {
         case getFilteredGiveawaysList(frameWidth: CGFloat, platform: Platform)
         case giveawaysResponse(Result<[Giveaway]?, Error>)
-        case giveawayCellAction(GiveawayCellFeature.State.ID, GiveawayCellFeature.Action)
+        case giveawayCellAction(IdentifiedActionOf<GiveawayCellFeature>)
         case setCellSize(CGFloat)
         case setSelectedPlatform(CGFloat, Platform)
         case getFilteredGiveaways(Platform)
@@ -39,39 +41,27 @@ struct GiveawayVListFeature {
             switch action {
             case let .setAllGiveaways(allGiveaways):
                 state.allGiveaways = allGiveaways
-                state.allGiveawaysStatesList = IdentifiedArray(uniqueElements: allGiveaways.map {
-                    giveaway in
-                    GiveawayCellFeature.State(
-                        id: UUID(),
-                        imageSize: state.cellSize,
-                        imageName: giveaway.image,
-                        title: giveaway.title,
-                        description: giveaway.description,
-                        selectedGiveaway: giveaway,
-                        isCarousel: false
-                    )
-                })
+                state.allGiveawaysStatesList = mapGiveaways(giveaways: allGiveaways, cellSize: state.cellSize)
                 let frameWidth = state.cellSize
                 return .run { send in
                     await send(.setCellSize(frameWidth))
                     await send(.getFilteredGiveawaysList(frameWidth: frameWidth, platform: Platform.all))
                 }
+                
             case let .getFilteredGiveaways(platform):
                 let frameWidth = state.cellSize
                 return .run { send in
                     await send(.setSelectedPlatform(frameWidth, platform))
                 }
+                
             case let .setSelectedPlatform(frameWidth, platform):
                 state.selectedPlatform = platform
                 return .run { send in
                     await send(.getFilteredGiveawaysList(frameWidth: frameWidth, platform: platform))
                 }
+                
             case let .getFilteredGiveawaysList(frameWidth, platform):
-                if platform == Platform.all {
-                    state.filteredGiveaways = state.allGiveaways
-                    state.filteredGiveawaysStatesList = state.allGiveawaysStatesList
-                    return .none
-                } else {
+                guard platform == .all else {
                     state.filteredGiveaways = nil
                     state.filteredGiveawaysStatesList = []
                     state.isLoading = true
@@ -81,39 +71,51 @@ struct GiveawayVListFeature {
                         await send(.giveawaysResponse(.success(data)))
                     }
                 }
+                state.filteredGiveaways = state.allGiveaways
+                state.filteredGiveawaysStatesList = state.allGiveawaysStatesList
+                return .none
+                
             case let .giveawaysResponse(result):
                 state.isLoading = false
-                switch result {
-                case let .success(giveaways):
-                    state.filteredGiveaways = giveaways
-                    state.filteredGiveawaysStatesList = IdentifiedArray(uniqueElements: giveaways?.map {
-                        giveaway in
-                        GiveawayCellFeature.State(
-                            id: UUID(),
-                            imageSize: state.cellSize,
-                            imageName: giveaway.image,
-                            title: giveaway.title,
-                            description: giveaway.description,
-                            selectedGiveaway: giveaway,
-                            isCarousel: false
-                        )
-                    } ?? [])
-                    return .none
-                case .failure(_):
-                    // FIXME: need to handle error messages
-                    state.filteredGiveaways = []
-                    state.filteredGiveawaysStatesList = []
-                    return .none
-                }
+                handleGiveawaysResponse(state: &state,result: result)
+                return .none
+                
             case .giveawayCellAction:
                 return .none
+                
             case let .setCellSize(cellSize):
                 state.cellSize = cellSize
                 return .none
             }
         }
-        .forEach(\.filteredGiveawaysStatesList, action: /Action.giveawayCellAction) {
+        .forEach(\.filteredGiveawaysStatesList, action: \.giveawayCellAction) {
             GiveawayCellFeature()
+        }
+    }
+    
+    private func mapGiveaways(giveaways: [Giveaway], cellSize: CGFloat) -> IdentifiedGiveawayCellStates {
+        return IdentifiedArray(uniqueElements: giveaways.map { giveaway in
+            GiveawayCellFeature.State(
+                id: UUID(),
+                imageSize: cellSize,
+                imageName: giveaway.image,
+                title: giveaway.title,
+                description: giveaway.description,
+                selectedGiveaway: giveaway,
+                isCarousel: false
+            )
+        })
+    }
+    
+    private func handleGiveawaysResponse(state: inout GiveawayVListFeature.State, result: Result<[Giveaway]?, Error>) {
+        switch result {
+        case let .success(giveaways):
+            state.filteredGiveaways = giveaways
+            state.filteredGiveawaysStatesList = mapGiveaways(giveaways: giveaways ?? [], cellSize: state.cellSize)
+        case .failure(_):
+            // FIXME: need to handle error messages
+            state.filteredGiveaways = []
+            state.filteredGiveawaysStatesList = []
         }
     }
 }

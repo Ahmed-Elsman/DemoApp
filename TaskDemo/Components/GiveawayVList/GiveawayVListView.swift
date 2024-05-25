@@ -25,8 +25,8 @@ struct GiveawayVListView: View {
             ForEachStore(
                 store.scope(
                     state: \.filteredGiveawaysStatesList,
-                    action: GiveawayVListFeature.Action.giveawayCellAction)) { childStore in
-                        GiveawayCellView(store: childStore)
+                    action: \.giveawayCellAction)) {
+                        GiveawayCellView(store: $0)
                     }
         }
         .padding(.horizontal, 16)
