@@ -17,9 +17,8 @@ struct GiveawayVListFeature {
         var filteredGiveawaysStatesList: IdentifiedArrayOf<GiveawayCellFeature.State> = []
         var allGiveawaysStatesList: IdentifiedArrayOf<GiveawayCellFeature.State> = []
         var isLoading = false
-        var cellSize: CGFloat = 300
-        var selectedPlatform: Platform = Platform.all
-        var frameWidth: CGFloat = 350
+        var cellSize: CGFloat = 350
+        var selectedPlatform: Platform = .all
     }
     
     enum Action {
@@ -29,7 +28,6 @@ struct GiveawayVListFeature {
         case setCellSize(CGFloat)
         case setSelectedPlatform(CGFloat, Platform)
         case getFilteredGiveaways(Platform)
-        case setFramWidth(CGFloat)
         case setAllGiveaways([Giveaway])
     }
     
@@ -45,7 +43,7 @@ struct GiveawayVListFeature {
                     giveaway in
                     GiveawayCellFeature.State(
                         id: UUID(),
-                        imageSize: state.frameWidth,
+                        imageSize: state.cellSize,
                         imageName: giveaway.image,
                         title: giveaway.title,
                         description: giveaway.description,
@@ -53,23 +51,19 @@ struct GiveawayVListFeature {
                         isCarousel: false
                     )
                 })
-                let frameWidth = state.frameWidth
+                let frameWidth = state.cellSize
                 return .run { send in
                     await send(.setCellSize(frameWidth))
                     await send(.getFilteredGiveawaysList(frameWidth: frameWidth, platform: Platform.all))
                 }
-            case let .setFramWidth(frameWidth):
-                state.frameWidth = frameWidth
-                return .none
             case let .getFilteredGiveaways(platform):
-                let frameWidth = state.frameWidth
+                let frameWidth = state.cellSize
                 return .run { send in
                     await send(.setSelectedPlatform(frameWidth, platform))
                 }
             case let .setSelectedPlatform(frameWidth, platform):
                 state.selectedPlatform = platform
                 return .run { send in
-                    await send(.setFramWidth(frameWidth))
                     await send(.getFilteredGiveawaysList(frameWidth: frameWidth, platform: platform))
                 }
             case let .getFilteredGiveawaysList(frameWidth, platform):
