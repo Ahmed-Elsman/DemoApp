@@ -7,14 +7,12 @@
 
 import Foundation
 
-struct User: Codable, Equatable, Identifiable {
-    let id: Int
+struct User: Equatable {
     let name: String
     let imageUrl: String
 
     static var mock: User {
         User(
-            id: 111,
             name: "Ahmed",
             imageUrl: "https://picsum.photos/600/600"
         )
