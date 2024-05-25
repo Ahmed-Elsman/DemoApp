@@ -10,82 +10,54 @@ import Foundation
 struct Giveaway: Codable, Equatable, Identifiable {
     let id: Int
     let title, worth: String
-    let thumbnail, image: String
-    let description, instructions: String
-    let openGiveawayURL: String
-    let publishedDate, type, platforms, endDate: String
+    let image: String
+    let description: String
+    let type, platforms, endDate: String
     let users: Int
-    let status: String
-    let gamerpowerURL, openGiveaway: String
 
     enum CodingKeys: String, CodingKey {
-        case id, title, worth, thumbnail, image, description, instructions
-        case openGiveawayURL = "open_giveaway_url"
-        case publishedDate = "published_date"
+        case id, title, worth, image, description
         case type, platforms
         case endDate = "end_date"
-        case users, status
-        case gamerpowerURL = "gamerpower_url"
-        case openGiveaway = "open_giveaway"
+        case users
     }
 }
 
 extension Giveaway {
     static let mock: Giveaway = Giveaway(
         id: 128,
-        title: "random",
-        worth: "ranndom",
-        thumbnail: "",
+        title: "random title",
+        worth: "random worth",
         image: "",
-        description: "random",
-        instructions: "ranndom",
-        openGiveawayURL: "",
-        publishedDate: "",
-        type: "",
-        platforms: "",
+        description: "random description",
+        type: "N/A",
+        platforms: "ios",
         endDate: "",
-        users: 5,
-        status: "",
-        gamerpowerURL: "",
-        openGiveaway: ""
+        users: 5
     )
     
     static let mockedArray: [Giveaway] = [
         Giveaway(
             id: 128,
-            title: "random",
-            worth: "ranndom",
-            thumbnail: "",
+            title: "random title",
+            worth: "random worth",
             image: "",
-            description: "random",
-            instructions: "ranndom",
-            openGiveawayURL: "",
-            publishedDate: "",
-            type: "",
-            platforms: "",
+            description: "random description",
+            type: "N/A",
+            platforms: "ios",
             endDate: "",
-            users: 5,
-            status: "",
-            gamerpowerURL: "",
-            openGiveaway: ""
+            users: 5
         ),
         Giveaway(
             id: 129,
-            title: "random",
-            worth: "ranndom",
-            thumbnail: "",
+            title: "random title",
+            worth: "random worth",
             image: "",
-            description: "random",
-            instructions: "ranndom",
-            openGiveawayURL: "",
-            publishedDate: "",
-            type: "",
-            platforms: "",
+            description: "random description",
+            type: "N/A",
+            platforms: "ios",
             endDate: "",
-            users: 5,
-            status: "",
-            gamerpowerURL: "",
-            openGiveaway: ""
+            users: 5
         )
     ]
 }
