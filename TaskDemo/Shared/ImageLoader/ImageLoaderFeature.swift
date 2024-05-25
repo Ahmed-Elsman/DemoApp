@@ -19,7 +19,7 @@ struct ImageLoaderFeature {
     
     enum Action {
         case setImageUrlString(String)
-        case setcontentMode(ContentMode)
+        case setContentMode(ContentMode)
     }
     
     var body: some Reducer<State, Action> {
@@ -29,7 +29,7 @@ struct ImageLoaderFeature {
                 state.imageUrlString = image
                 return .none
                 
-            case let .setcontentMode(contentMode):
+            case let .setContentMode(contentMode):
                 state.contentMode = contentMode
                 return .none
             }

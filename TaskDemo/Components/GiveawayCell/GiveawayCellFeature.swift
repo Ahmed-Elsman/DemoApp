@@ -60,7 +60,7 @@ struct GiveawayCellFeature {
                 }
             case let .setGiveawayImageContentMode(contentMode):
                 return .run { send in
-                    await send(.imageLoaderAction(.setcontentMode(contentMode)))
+                    await send(.imageLoaderAction(.setContentMode(contentMode)))
                 }
             case .imageLoaderAction:
                 return .none
