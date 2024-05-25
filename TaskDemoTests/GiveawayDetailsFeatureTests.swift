@@ -59,7 +59,7 @@ final class GiveawayDetailsFeatureTests: XCTestCase {
         await store.send(.setGiveawayImage(imageUrl))
         
         await store.receive(\.imageLoaderAction) {
-            $0.imageLoaderState.imageUrlString = imageUrl
+            $0.imageLoaderState.imageUrl = imageUrl
         }
     }
     

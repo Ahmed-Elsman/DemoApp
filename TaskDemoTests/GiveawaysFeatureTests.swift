@@ -39,7 +39,7 @@ final class GiveawaysFeatureTests: XCTestCase {
         
         await store.receive(\.imageLoaderAction) {
             // Verify the imageLoaderAction was sent
-            $0.imageLoaderState.imageUrlString = User.mock.imageUrl
+            $0.imageLoaderState.imageUrl = User.mock.imageUrl
         }
     }
     

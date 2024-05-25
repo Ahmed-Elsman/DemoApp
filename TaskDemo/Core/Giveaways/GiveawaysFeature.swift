@@ -39,7 +39,7 @@ struct GiveawaysFeature {
                 }
             case let .setUserImage(userImage):
                 return .run { send in
-                    await send(.imageLoaderAction(.setImageUrlString(userImage)))
+                    await send(.imageLoaderAction(.setImageUrl(userImage)))
                 }
             case let .setUserImageContentMode(contentMode):
                 return .run { send in

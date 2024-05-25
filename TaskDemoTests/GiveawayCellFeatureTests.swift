@@ -46,7 +46,7 @@ final class GiveawayCellFeatureTests: XCTestCase {
         
         await store.receive(\.imageLoaderAction) {
             // Verify the imageLoaderAction was sent
-            $0.imageLoaderState.imageUrlString = "testImage"
+            $0.imageLoaderState.imageUrl = "testImage"
         }
     }
     

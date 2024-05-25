@@ -15,7 +15,7 @@ struct ImageLoaderView: View {
     var body: some View {
         
         WithViewStore(store, observe: { $0 }) { viewStore in
-            if let imageString = viewStore.imageUrlString,
+            if let imageString = viewStore.imageUrl,
                let contentMode = viewStore.contentMode {
                 Rectangle()
                     .opacity(0.0001)
@@ -40,7 +40,7 @@ struct ImageLoaderView: View {
         ImageLoaderView(
             store: Store(
                 initialState: ImageLoaderFeature.State(
-                    imageUrlString: "https://picsum.photos/600/600",
+                    imageUrl: "https://picsum.photos/600/600",
                     contentMode: .fill
                 )
             ) {
