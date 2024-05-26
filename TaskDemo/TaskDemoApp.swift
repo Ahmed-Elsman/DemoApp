@@ -14,7 +14,6 @@ struct TaskDemoApp: App {
         WindowGroup {
             GiveawaysView(store: Store(initialState: ComposedFeature.State()) {
                 ComposedFeature()
-                    ._printChanges()
             })
         }
     }
