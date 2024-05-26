@@ -85,7 +85,7 @@ struct GiveawayCarouselFeature {
         return IdentifiedArray(uniqueElements: giveaways.map { giveaway in
             GiveawayCellFeature.State(
                 id: UUID(),
-                imageName: giveaway.image,
+                imageUrl: giveaway.image,
                 title: giveaway.title,
                 description: giveaway.description,
                 selectedGiveaway: giveaway,

@@ -15,23 +15,13 @@ struct GiveawayCellFeature {
     struct State: Equatable, Identifiable {
         let id: UUID
         var imageSize: CGFloat = 300
-        var imageName: String
+        var imageUrl: String
         var title: String
         var description: String
         var selectedGiveaway: Giveaway
         var isCarousel: Bool = true
         var imageLoaderState = ImageLoaderFeature.State()
         var navigateToDetails: Bool = false
-        
-        init(id: UUID ,imageSize: CGFloat = 300, imageName: String, title: String, description: String, selectedGiveaway: Giveaway, isCarousel: Bool) {
-            self.id = id
-            self.imageSize = imageSize
-            self.imageName = imageName
-            self.title = title
-            self.description = description
-            self.selectedGiveaway = selectedGiveaway
-            self.isCarousel = isCarousel
-        }
     }
     
     enum Action {

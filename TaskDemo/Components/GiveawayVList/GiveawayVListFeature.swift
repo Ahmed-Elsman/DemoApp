@@ -98,7 +98,7 @@ struct GiveawayVListFeature {
             GiveawayCellFeature.State(
                 id: UUID(),
                 imageSize: cellSize,
-                imageName: giveaway.image,
+                imageUrl: giveaway.image,
                 title: giveaway.title,
                 description: giveaway.description,
                 selectedGiveaway: giveaway,

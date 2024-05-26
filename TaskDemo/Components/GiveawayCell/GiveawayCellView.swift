@@ -15,43 +15,20 @@ struct GiveawayCellView: View {
         WithViewStore(store, observe: { $0 }) { viewStore in
             NavigationLink(
                 destination: GiveawayDetailsView(
-                    store: Store(
-                        initialState: GiveawayDetailsFeature.State(giveaway: viewStore.selectedGiveaway)
-                    ) {
+                    store: Store(initialState: GiveawayDetailsFeature.State(giveaway: viewStore.selectedGiveaway)) {
                         GiveawayDetailsFeature()
                     }
                 ),
                 isActive: viewStore.binding(
                     get: \.navigateToDetails,
                     send: GiveawayCellFeature.Action.navigateToDetails
-                )
-            ) {
-                ZStack(alignment:.top) {
-                    
+                )) {
+                ZStack(alignment:.top) {                    
                     ImageLoaderView(store: store.scope(state: \.imageLoaderState, action: \.imageLoaderAction))
                         .frame(width: viewStore.imageSize, height: viewStore.isCarousel ? viewStore.imageSize/2 : viewStore.imageSize)
-                        .overlay(
-                            LinearGradient(
-                                gradient: Gradient(colors: [Color.black.opacity(0.5), Color.black.opacity(0.5), Color.black.opacity(0.5)]),
-                                startPoint: .top,
-                                endPoint: .bottom
-                            )
-                        )
-                    VStack(alignment: .leading) {
-                        Text(viewStore.title)
-                            .font(.callout)
-                            .fontWeight(.bold)
-                            .lineLimit(2)
-                            .foregroundColor(.white)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                        
-                        Text(viewStore.description)
-                            .font(.caption)
-                            .fontWeight(.bold)
-                            .lineLimit(3)
-                            .foregroundColor(Color.white.opacity(0.5))
-                            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
-                    }
+                        .gradientOverlay()
+                    
+                    cellDetails(viewStore: viewStore)
                     .padding(14)
                 }
                 .frame(width: viewStore.imageSize, height: viewStore.isCarousel ? viewStore.imageSize/2 : viewStore.imageSize)
@@ -60,10 +37,29 @@ struct GiveawayCellView: View {
                     viewStore.send(.giveawayTapped(viewStore.selectedGiveaway))
                 }
                 .onAppear {
-                    viewStore.send(.setGiveawayImage(viewStore.imageName))
+                    viewStore.send(.setGiveawayImage(viewStore.imageUrl))
                     viewStore.send(.setGiveawayImageContentMode(ContentMode.fill))
                 }
             }
+        }
+    }
+    
+    
+    private func cellDetails(viewStore: ViewStore<GiveawayCellFeature.State, GiveawayCellFeature.Action>) -> some View {
+        VStack(alignment: .leading) {
+            Text(viewStore.title)
+                .font(.callout)
+                .fontWeight(.bold)
+                .lineLimit(2)
+                .foregroundColor(.white)
+                .frame(maxWidth: .infinity, alignment: .leading)
+            
+            Text(viewStore.description)
+                .font(.caption)
+                .fontWeight(.bold)
+                .lineLimit(3)
+                .foregroundColor(Color.white.opacity(0.5))
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
         }
     }
 }
@@ -75,7 +71,7 @@ struct GiveawayCellView: View {
             store: Store(
                 initialState: GiveawayCellFeature.State(
                     id: UUID(),
-                    imageName: "https://picsum.photos/600/600",
+                    imageUrl: "https://picsum.photos/600/600",
                     title: "",
                     description: "",
                     selectedGiveaway: Giveaway.mock,

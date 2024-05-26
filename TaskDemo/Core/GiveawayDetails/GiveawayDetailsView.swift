@@ -20,14 +20,7 @@ struct GiveawayDetailsView: View {
                         ZStack(alignment: .top) {
                             
                             ImageLoaderView(store: store.scope(state: \.imageLoaderState, action: \.imageLoaderAction))
-//                            .frame(width: viewStore.imageSize, height: viewStore.isCarousel ? viewStore.imageSize/2 : viewStore.imageSize)
-                                .overlay(
-                                    LinearGradient(
-                                        gradient: Gradient(colors: [Color.black.opacity(0.5), Color.black.opacity(0.5), Color.black.opacity(0.5)]),
-                                        startPoint: .top,
-                                        endPoint: .bottom
-                                    )
-                                )
+                                .gradientOverlay()
                             
                             HStack {
                                 Spacer()
