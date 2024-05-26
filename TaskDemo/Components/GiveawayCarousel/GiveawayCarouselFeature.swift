@@ -28,7 +28,7 @@ struct GiveawayCarouselFeature {
         case setAllGiveawaysForFiltration([Giveaway])
     }
 
-    @Dependency (\.giveaways) var giveaways
+    @Dependency (\.giveaways) var giveaways: GiveawaysClientProtocol
 
     var body: some Reducer<State, Action> {
 

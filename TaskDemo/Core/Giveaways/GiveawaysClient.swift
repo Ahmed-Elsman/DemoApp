@@ -8,13 +8,17 @@
 import ComposableArchitecture
 import Foundation
 
-struct GiveawaysClient {
+protocol GiveawaysClientProtocol {
+    var fetch: (Platform?) async throws -> [Giveaway] { get }
+}
+
+struct GiveawaysClient: GiveawaysClientProtocol {
     static let baseUrl = "https://www.gamerpower.com/api/"
     var fetch: (Platform?) async throws -> [Giveaway]
 }
 
 extension GiveawaysClient: DependencyKey {
-    static let liveValue = Self(
+    static let liveValue: GiveawaysClientProtocol = Self(
         fetch: { platform in
             let urlString: String
             if let platform = platform {
@@ -35,7 +39,7 @@ extension GiveawaysClient: DependencyKey {
 }
 
 extension DependencyValues {
-    var giveaways: GiveawaysClient {
+    var giveaways: GiveawaysClientProtocol {
         get { self[GiveawaysClient.self] }
         set { self[GiveawaysClient.self] = newValue }
     }
