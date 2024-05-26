@@ -21,7 +21,7 @@ struct GiveawayCarouselView: View {
     }
 
     private func carouselView(store: StoreOf<GiveawayCarouselFeature>) -> some View {
-        LazyVStack {
+        VStack {
             if store.isLoading {
                 ProgressView()
             }
