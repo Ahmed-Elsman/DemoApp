@@ -9,20 +9,19 @@ import SwiftUI
 import ComposableArchitecture
 
 struct GiveawayListWithFiltrationView: View {
-    
+
     let store: StoreOf<GiveawayListWithFiltrationFeature>
-    
+
     var body: some View {
             Color.white.ignoresSafeArea()
             LazyVStack(alignment: .leading, spacing: 0) {
                 PlatformFilterListView(store: store.scope(state: \.filterList, action: \.filterListAction))
-                
+
                 GiveawayVListView(store: store.scope(state: \.giveawayVList, action: \.giveawayVListAction))
                     .padding(.horizontal, 16)
             }
     }
 }
-
 
 #Preview {
     ZStack(alignment: .top) {

@@ -10,7 +10,7 @@ import ComposableArchitecture
 
 struct GiveawayCellView: View {
     let store: StoreOf<GiveawayCellFeature>
-    
+
     var body: some View {
         WithViewStore(store, observe: { $0 }) { viewStore in
             NavigationLink(
@@ -23,11 +23,11 @@ struct GiveawayCellView: View {
                     get: \.navigateToDetails,
                     send: GiveawayCellFeature.Action.navigateToDetails
                 )) {
-                ZStack(alignment:.top) {                    
+                ZStack(alignment: .top) {
                     ImageLoaderView(store: store.scope(state: \.imageLoaderState, action: \.imageLoaderAction))
                         .frame(width: viewStore.imageSize, height: viewStore.isCarousel ? viewStore.imageSize/2 : viewStore.imageSize)
                         .gradientOverlay()
-                    
+
                     cellDetails(viewStore: viewStore)
                     .padding(14)
                 }
@@ -43,8 +43,7 @@ struct GiveawayCellView: View {
             }
         }
     }
-    
-    
+
     private func cellDetails(viewStore: ViewStore<GiveawayCellFeature.State, GiveawayCellFeature.Action>) -> some View {
         VStack(alignment: .leading) {
             Text(viewStore.title)
@@ -53,7 +52,7 @@ struct GiveawayCellView: View {
                 .lineLimit(2)
                 .foregroundColor(.white)
                 .frame(maxWidth: .infinity, alignment: .leading)
-            
+
             Text(viewStore.description)
                 .font(.caption)
                 .fontWeight(.bold)

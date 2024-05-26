@@ -10,7 +10,7 @@ import Foundation
 
 @Reducer
 struct GiveawayCarouselFeature {
-    
+
     @ObservableState
     struct State: Equatable {
         var giveaways: [Giveaway]?
@@ -19,7 +19,7 @@ struct GiveawayCarouselFeature {
         var isLoading = false
         var giveawayVListState = GiveawayVListFeature.State()
     }
-    
+
     enum Action {
         case getGiveaways
         case giveawaysResponse(Result<[Giveaway]?, Error>)
@@ -27,15 +27,15 @@ struct GiveawayCarouselFeature {
         case giveawayVListAction(GiveawayVListFeature.Action)
         case setAllGiveawaysForFiltration([Giveaway])
     }
-    
+
     @Dependency (\.giveaways) var giveaways
-    
+
     var body: some Reducer<State, Action> {
-        
+
         Scope(state: \.giveawayVListState, action: \.giveawayVListAction) {
             GiveawayVListFeature()
         }
-        
+
         Reduce { state, action in
             switch action {
             case .getGiveaways:
@@ -48,7 +48,7 @@ struct GiveawayCarouselFeature {
             case let .giveawaysResponse(result):
                 state.isLoading = false
                 return handleGiveawaysResponse(state: &state, result: result)
-                
+
             case .setAllGiveawaysForFiltration:
                 return .none
             case .giveawayVListAction:
@@ -61,7 +61,7 @@ struct GiveawayCarouselFeature {
             GiveawayCellFeature()
         }
     }
-    
+
     private func handleGiveawaysResponse(state: inout GiveawayCarouselFeature.State, result: Result<[Giveaway]?, Error>) -> Effect<GiveawayCarouselFeature.Action> {
         switch result {
         case let .success(giveaways):
@@ -73,14 +73,14 @@ struct GiveawayCarouselFeature {
                     await send(.setAllGiveawaysForFiltration(allGiveaways))
                 }
             }
-        case .failure(_):
+        case .failure:
             // FIXME: need to handle error messages
             state.giveaways = []
             state.giveawaysStatesList = []
             return .none
         }
     }
-    
+
     private func mapGiveaways(giveaways: [Giveaway]) -> IdentifiedArrayOf<GiveawayCellFeature.State> {
         return IdentifiedArray(uniqueElements: giveaways.map { giveaway in
             GiveawayCellFeature.State(

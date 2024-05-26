@@ -10,9 +10,9 @@ import Foundation
 
 @Reducer
 struct GiveawayVListFeature {
-    
+
     typealias IdentifiedGiveawayCellStates = IdentifiedArrayOf<GiveawayCellFeature.State>
-    
+
     struct State: Equatable {
         var filteredGiveaways: [Giveaway]?
         var allGiveaways: [Giveaway]?
@@ -22,7 +22,7 @@ struct GiveawayVListFeature {
         var cellSize: CGFloat = 350
         var selectedPlatform: Platform = .all
     }
-    
+
     enum Action {
         case getFilteredGiveawaysList(frameWidth: CGFloat, platform: Platform)
         case giveawaysResponse(Result<[Giveaway]?, Error>)
@@ -32,11 +32,11 @@ struct GiveawayVListFeature {
         case getFilteredGiveaways(Platform)
         case setAllGiveaways([Giveaway])
     }
-    
+
     @Dependency (\.giveaways) var giveaways
-    
+
     var body: some Reducer<State, Action> {
-        
+
         Reduce {state, action in
             switch action {
             case let .setAllGiveaways(allGiveaways):
@@ -47,19 +47,19 @@ struct GiveawayVListFeature {
                     await send(.setCellSize(frameWidth))
                     await send(.getFilteredGiveawaysList(frameWidth: frameWidth, platform: Platform.all))
                 }
-                
+
             case let .getFilteredGiveaways(platform):
                 let frameWidth = state.cellSize
                 return .run { send in
                     await send(.setSelectedPlatform(frameWidth, platform))
                 }
-                
+
             case let .setSelectedPlatform(frameWidth, platform):
                 state.selectedPlatform = platform
                 return .run { send in
                     await send(.getFilteredGiveawaysList(frameWidth: frameWidth, platform: platform))
                 }
-                
+
             case let .getFilteredGiveawaysList(frameWidth, platform):
                 guard platform == .all else {
                     state.filteredGiveaways = nil
@@ -74,15 +74,15 @@ struct GiveawayVListFeature {
                 state.filteredGiveaways = state.allGiveaways
                 state.filteredGiveawaysStatesList = state.allGiveawaysStatesList
                 return .none
-                
+
             case let .giveawaysResponse(result):
                 state.isLoading = false
-                handleGiveawaysResponse(state: &state,result: result)
+                handleGiveawaysResponse(state: &state, result: result)
                 return .none
-                
+
             case .giveawayCellAction:
                 return .none
-                
+
             case let .setCellSize(cellSize):
                 state.cellSize = cellSize
                 return .none
@@ -92,7 +92,7 @@ struct GiveawayVListFeature {
             GiveawayCellFeature()
         }
     }
-    
+
     private func mapGiveaways(giveaways: [Giveaway], cellSize: CGFloat) -> IdentifiedGiveawayCellStates {
         return IdentifiedArray(uniqueElements: giveaways.map { giveaway in
             GiveawayCellFeature.State(
@@ -106,13 +106,13 @@ struct GiveawayVListFeature {
             )
         })
     }
-    
+
     private func handleGiveawaysResponse(state: inout GiveawayVListFeature.State, result: Result<[Giveaway]?, Error>) {
         switch result {
         case let .success(giveaways):
             state.filteredGiveaways = giveaways
             state.filteredGiveawaysStatesList = mapGiveaways(giveaways: giveaways ?? [], cellSize: state.cellSize)
-        case .failure(_):
+        case .failure:
             // FIXME: need to handle error messages
             state.filteredGiveaways = []
             state.filteredGiveawaysStatesList = []

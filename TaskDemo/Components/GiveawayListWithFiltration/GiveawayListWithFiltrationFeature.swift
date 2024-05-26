@@ -5,9 +5,7 @@
 //  Created by Ahmed Elsman on 16/05/2024.
 //
 
-
 import ComposableArchitecture
-
 
 @Reducer
 struct GiveawayListWithFiltrationFeature {
@@ -22,16 +20,16 @@ struct GiveawayListWithFiltrationFeature {
         case setSelectedPlatform(Platform)
         case setAllGiveaways([Giveaway])
     }
-    
+
     var body: some ReducerOf<Self> {
-        
+
         Scope(state: \.filterList, action: \.filterListAction) {
             PlatformFilterListFeature()
         }
         Scope(state: \.giveawayVList, action: \.giveawayVListAction) {
             GiveawayVListFeature()
         }
-        
+
         Reduce { state, action in
             switch action {
             case let .setAllGiveaways(allGiveaways):

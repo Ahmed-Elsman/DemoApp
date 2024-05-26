@@ -34,18 +34,18 @@ final class GiveawayDetailsFeatureTests: XCTestCase {
             gamerpowerURL: "",
             openGiveaway: ""
         )
-        
+
         let store = TestStore(
             initialState: GiveawayDetailsFeature.State(giveaway: initialGiveaway)
         ) {
             GiveawayDetailsFeature()
         }
-        
+
         await store.send(.setGiveawayDetails(newGiveaway)) {
             $0.giveaway = newGiveaway
         }
     }
-    
+
     // Test setting giveaway image
     func testSetGiveawayImage() async {
         let store = TestStore(
@@ -53,16 +53,16 @@ final class GiveawayDetailsFeatureTests: XCTestCase {
         ) {
             GiveawayDetailsFeature()
         }
-        
+
         let imageUrl = "https://picsum.photos/600/600"
-        
+
         await store.send(.setGiveawayImage(imageUrl))
-        
+
         await store.receive(\.imageLoaderAction) {
             $0.imageLoaderState.imageUrl = imageUrl
         }
     }
-    
+
     // Test setting giveaway image content mode
     func testSetGiveawayImageContentMode() async {
         let store = TestStore(
@@ -70,11 +70,11 @@ final class GiveawayDetailsFeatureTests: XCTestCase {
         ) {
             GiveawayDetailsFeature()
         }
-        
+
         let contentMode: ContentMode = .fill
-        
+
         await store.send(.setGiveawayImageContentMode(contentMode))
-        
+
         await store.receive(\.imageLoaderAction) {
             $0.imageLoaderState.contentMode = contentMode
         }

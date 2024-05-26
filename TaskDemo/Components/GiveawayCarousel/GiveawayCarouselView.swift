@@ -10,7 +10,7 @@ import ComposableArchitecture
 
 struct GiveawayCarouselView: View {
     let store: StoreOf<GiveawayCarouselFeature>
-    
+
     var body: some View {
         carouselView(store: store)
             .onAppear {
@@ -19,7 +19,7 @@ struct GiveawayCarouselView: View {
                 }
             }
     }
-    
+
     private func carouselView(store: StoreOf<GiveawayCarouselFeature>) -> some View {
         LazyVStack {
             if store.isLoading {

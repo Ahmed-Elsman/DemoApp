@@ -11,7 +11,7 @@ import ComposableArchitecture
 
 @MainActor
 final class GiveawayCellFeatureTests: XCTestCase {
-    
+
     // Test giveaway tapped action
     func testGiveawayTappedAction() async {
         let store = TestStore(
@@ -23,13 +23,13 @@ final class GiveawayCellFeatureTests: XCTestCase {
                                                     isCarousel: true)) {
                                                         GiveawayCellFeature()
                                                     }
-        
+
         await store.send(.giveawayTapped(Giveaway.mock)) {
             $0.selectedGiveaway = Giveaway.mock
             $0.navigateToDetails = true
         }
     }
-    
+
     // Test setting giveaway image action
     func testSetGiveawayImageAction() async {
         let store = TestStore(
@@ -41,15 +41,15 @@ final class GiveawayCellFeatureTests: XCTestCase {
                                                     isCarousel: true)) {
                                                         GiveawayCellFeature()
                                                     }
-        
+
         await store.send(.setGiveawayImage("testImage"))
-        
+
         await store.receive(\.imageLoaderAction) {
             // Verify the imageLoaderAction was sent
             $0.imageLoaderState.imageUrl = "testImage"
         }
     }
-    
+
     // Test setting giveaway image content mode action
     func testSetGiveawayImageContentModeAction() async {
         let store = TestStore(
@@ -61,14 +61,14 @@ final class GiveawayCellFeatureTests: XCTestCase {
                                                     isCarousel: true)) {
                                                         GiveawayCellFeature()
                                                     }
-        
+
         await store.send(.setGiveawayImageContentMode(.fill))
-        
+
         await store.receive(\.imageLoaderAction) {
             $0.imageLoaderState.contentMode = .fill
         }
     }
-    
+
     // Test navigating to details action
     func testNavigateToDetailsAction() async {
         let store = TestStore(
@@ -80,11 +80,11 @@ final class GiveawayCellFeatureTests: XCTestCase {
                                                     isCarousel: true)) {
                                                         GiveawayCellFeature()
                                                     }
-        
+
         await store.send(.navigateToDetails(true)) {
             $0.navigateToDetails = true
         }
-        
+
         await store.send(.navigateToDetails(false)) {
             $0.navigateToDetails = false
         }

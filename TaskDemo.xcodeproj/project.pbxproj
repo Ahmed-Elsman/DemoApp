@@ -320,6 +320,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				2740301E2C0336D7008447BF /* PBXTargetDependency */,
 			);
 			name = TaskDemo;
 			packageProductDependencies = (
@@ -361,6 +362,7 @@
 			packageReferences = (
 				2771CCED2BF222A000984754 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
 				277D9BF52BF23F3B002A5914 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
+				2740301C2C033601008447BF /* XCRemoteSwiftPackageReference "SwiftLint" */,
 			);
 			productRefGroup = 2771CCDD2BF220D200984754 /* Products */;
 			projectDirPath = "";
@@ -443,6 +445,10 @@
 			isa = PBXTargetDependency;
 			target = 2771CCDB2BF220D200984754 /* TaskDemo */;
 			targetProxy = 271EAF5D2BF8E5DA00A6CFFA /* PBXContainerItemProxy */;
+		};
+		2740301E2C0336D7008447BF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 2740301D2C0336D7008447BF /* SwiftLintBuildToolPlugin */;
 		};
 /* End PBXTargetDependency section */
 
@@ -701,6 +707,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		2740301C2C033601008447BF /* XCRemoteSwiftPackageReference "SwiftLint" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/SwiftLint";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.55.1;
+			};
+		};
 		2771CCED2BF222A000984754 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture";
@@ -720,6 +734,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		2740301D2C0336D7008447BF /* SwiftLintBuildToolPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2740301C2C033601008447BF /* XCRemoteSwiftPackageReference "SwiftLint" */;
+			productName = "plugin:SwiftLintBuildToolPlugin";
+		};
 		2771CCEE2BF222A000984754 /* ComposableArchitecture */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 2771CCED2BF222A000984754 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;

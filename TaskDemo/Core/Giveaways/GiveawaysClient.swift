@@ -22,7 +22,7 @@ extension GiveawaysClient: DependencyKey {
             } else {
                 urlString = "\(baseUrl)giveaways"
             }
-            
+
             guard let url = URL(string: urlString) else {
                 throw URLError(.badURL)
             }

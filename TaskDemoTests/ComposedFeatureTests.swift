@@ -11,23 +11,22 @@ import ComposableArchitecture
 
 @MainActor
 final class ComposedFeatureTests: XCTestCase {
-    
+
     struct MockData {
         static let giveaways = Giveaway.mockedArray
     }
-    
+
     // Test setting all giveaways for filtration
     func testSetAllGiveawaysForFiltration() async {
         let store = TestStore(
             initialState: ComposedFeature.State()) {
                 ComposedFeature()
             }
-        
+
         await store.send(.giveawayCarouslAction(.setAllGiveawaysForFiltration(MockData.giveaways))) {
             $0.allGiveaways = MockData.giveaways
         }
-        
+
         store.exhaustivity = .off
     }
 }
-

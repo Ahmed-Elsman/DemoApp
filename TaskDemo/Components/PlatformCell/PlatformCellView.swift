@@ -9,9 +9,9 @@ import SwiftUI
 import ComposableArchitecture
 
 struct PlatformCellView: View {
-    
+
     let store: StoreOf<PlatformCellFeature>
-    
+
     var body: some View {
         WithViewStore(store, observe: {$0}) { viewStore in
             Text(viewStore.title)
@@ -45,7 +45,7 @@ struct PlatformCellView: View {
                     PlatformCellFeature()
                 }
             )
-            
+
             PlatformCellView(
                 store: Store(
                     initialState: PlatformCellFeature.State(
@@ -60,5 +60,5 @@ struct PlatformCellView: View {
             )
         }
     }
-    
+
 }

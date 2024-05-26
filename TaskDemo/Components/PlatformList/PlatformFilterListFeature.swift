@@ -10,32 +10,32 @@ import Foundation
 
 @Reducer
 struct PlatformFilterListFeature {
-    
+
     typealias IdentifiedPlatformCellStates = IdentifiedArrayOf<PlatformCellFeature.State>
-    
+
     struct State: Equatable {
         var selectedPlatform: Platform? = .all
         var platformStatesList: IdentifiedPlatformCellStates = []
         var platforms = Platform.allCases
     }
-    
+
     enum Action {
         case platformCellAction(IdentifiedActionOf<PlatformCellFeature>)
         case selectPlatform(Platform)
         case setPlatforms
     }
-    
+
     var body: some Reducer<State, Action> {
-        
+
         Reduce { state, action in
             switch action {
             case .setPlatforms:
                 state.platformStatesList = mapPlatforms(state: &state)
                 return .none
-                
+
             case let .platformCellAction(platformAction):
                 return handlePlatformCellAction(platformAction, state: &state)
-                
+
             case let .selectPlatform(platform):
                 state.selectedPlatform = platform
                 return .run { send in
@@ -47,7 +47,7 @@ struct PlatformFilterListFeature {
             PlatformCellFeature()
         }
     }
-    
+
     private func mapPlatforms(state: inout State) -> IdentifiedPlatformCellStates {
         return IdentifiedArrayOf(uniqueElements: state.platforms.map { platform in
             PlatformCellFeature.State(
@@ -58,12 +58,12 @@ struct PlatformFilterListFeature {
             )
         })
     }
-    
+
     private func handlePlatformCellAction(_ platformAction: IdentifiedActionOf<PlatformCellFeature>, state: inout State) -> Effect<Action> {
         guard case let .element(_, action: action) = platformAction else {
             return .none
         }
-        
+
         switch action {
         case let .selectPlatform(platform):
             return .run { send in
@@ -72,8 +72,3 @@ struct PlatformFilterListFeature {
         }
     }
 }
-
-
-
-
-

@@ -10,13 +10,13 @@ import ComposableArchitecture
 
 struct GiveawayVListView: View {
     let store: StoreOf<GiveawayVListFeature>
-    
+
     var body: some View {
         WithViewStore(store, observe: { $0 }) { viewStore in
             listView(viewStore: viewStore)
         }
     }
-    
+
     private func listView(viewStore: ViewStore<GiveawayVListFeature.State, GiveawayVListFeature.Action>) -> some View {
         LazyVStack {
             if viewStore.isLoading {

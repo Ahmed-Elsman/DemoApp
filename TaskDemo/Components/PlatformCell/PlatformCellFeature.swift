@@ -10,19 +10,18 @@ import Foundation
 
 @Reducer
 struct PlatformCellFeature {
-    
-    
+
     struct State: Equatable, Identifiable {
         let id: UUID
         var title: String
         var isSelected: Bool
         var platform: Platform
     }
-    
+
     enum Action {
         case selectPlatform(Platform)
     }
-    
+
     var body: some Reducer<State, Action> {
         Reduce { state, action in
             switch action {

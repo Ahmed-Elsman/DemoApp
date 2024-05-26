@@ -8,10 +8,9 @@
 import SwiftUI
 import ComposableArchitecture
 
-
 @Reducer
 struct GiveawayCellFeature {
-    
+
     struct State: Equatable, Identifiable {
         let id: UUID
         var imageSize: CGFloat = 300
@@ -23,7 +22,7 @@ struct GiveawayCellFeature {
         var imageLoaderState = ImageLoaderFeature.State()
         var navigateToDetails: Bool = false
     }
-    
+
     enum Action {
         case giveawayTapped(Giveaway)
         case imageLoaderAction(ImageLoaderFeature.Action)
@@ -31,13 +30,13 @@ struct GiveawayCellFeature {
         case setGiveawayImageContentMode(ContentMode)
         case navigateToDetails(Bool)
     }
-    
+
     var body: some Reducer<State, Action> {
-        
+
         Scope(state: \.imageLoaderState, action: \.imageLoaderAction) {
             ImageLoaderFeature()
         }
-        
+
         Reduce { state, action in
             switch action {
             case let .giveawayTapped(giveaway):

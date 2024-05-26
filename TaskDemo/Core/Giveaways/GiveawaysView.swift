@@ -10,26 +10,26 @@ import Foundation
 import ComposableArchitecture
 
 struct GiveawaysView: View {
-    
+
     let store: StoreOf<ComposedFeature>
-    
+
     var body: some View {
         NavigationView {
             ScrollView {
                 ZStack(alignment: .top) {
                     LazyVStack(spacing: 5) {
-                        
+
                         headerView(store: store.scope(state: \.giveaway, action: \.giveawayAction))
                             .padding(.horizontal, 16)
-                        
+
                         Text("Explore \nGames Giveaways")
                             .font(.largeTitle)
                             .fontWeight(.bold)
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .padding(.horizontal, 16)
-                        
+
                         GiveawayCarouselView(store: store.scope(state: \.giveawayCarousel, action: \.giveawayCarouselAction))
-                        
+
                         GiveawayListWithFiltrationView(store: store.scope(state: \.giveawayListWithFilter, action: \.giveawayListWithFilterAction))
                     }
                 }
@@ -37,9 +37,9 @@ struct GiveawaysView: View {
             }
         }
     }
-    
+
     private func headerView(store: StoreOf<GiveawaysFeature>) -> some View {
-        
+
         HStack {
             if let currentUser = store.currentUser {
                 VStack(alignment: .leading) {
@@ -49,7 +49,7 @@ struct GiveawaysView: View {
                         .fontWeight(.medium)
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
-                
+
                 ImageLoaderView(store: store.scope(state: \.imageLoaderState, action: \.imageLoaderAction))
                     .background(Color.white)
                     .clipShape(Circle())
@@ -60,7 +60,7 @@ struct GiveawaysView: View {
             store.send(.setCurrentUser(User.mock))
             store.send(.setUserImageContentMode(.fill))
         }
-        
+
     }
 }
 

@@ -7,7 +7,6 @@
 
 import ComposableArchitecture
 
-
 @Reducer
 struct ComposedFeature {
     struct State: Equatable {
@@ -21,13 +20,13 @@ struct ComposedFeature {
         case giveawayCarouselAction(GiveawayCarouselFeature.Action)
         case giveawayListWithFilterAction(GiveawayListWithFiltrationFeature.Action)
     }
-    
+
     var body: some ReducerOf<Self> {
-        
+
         Scope(state: \.giveaway, action: \.giveawayAction) {
             GiveawaysFeature()
         }
-        
+
         Scope(state: \.giveawayCarousel, action: \.giveawayCarouselAction) {
             GiveawayCarouselFeature()
         }
@@ -35,7 +34,7 @@ struct ComposedFeature {
         Scope(state: \.giveawayListWithFilter, action: \.giveawayListWithFilterAction) {
             GiveawayListWithFiltrationFeature()
         }
-        
+
         Reduce { state, action in
             switch action {
             case let .giveawayCarouselAction(.setAllGiveawaysForFiltration(giveaways)):
@@ -53,4 +52,3 @@ struct ComposedFeature {
         }
     }
 }
-

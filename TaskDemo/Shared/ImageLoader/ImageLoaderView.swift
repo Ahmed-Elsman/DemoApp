@@ -11,9 +11,9 @@ import SDWebImageSwiftUI
 
 struct ImageLoaderView: View {
     let store: StoreOf<ImageLoaderFeature>
-    
+
     var body: some View {
-        
+
         WithViewStore(store, observe: { $0 }) { viewStore in
             if let imageString = viewStore.imageUrl,
                let contentMode = viewStore.contentMode {
@@ -32,11 +32,10 @@ struct ImageLoaderView: View {
     }
 }
 
-
 #Preview {
     ZStack {
         Color.black.ignoresSafeArea()
-        
+
         ImageLoaderView(
             store: Store(
                 initialState: ImageLoaderFeature.State(
@@ -52,4 +51,3 @@ struct ImageLoaderView: View {
         .padding(.vertical, 60)
     }
 }
-

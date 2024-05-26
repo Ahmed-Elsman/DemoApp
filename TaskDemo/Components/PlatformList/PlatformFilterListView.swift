@@ -10,11 +10,11 @@ import ComposableArchitecture
 
 struct PlatformFilterListView: View {
     let store: StoreOf<PlatformFilterListFeature>
-    
+
     var body: some View {
         filtrationView(store: store)
     }
-    
+
     private func filtrationView(store: StoreOf<PlatformFilterListFeature>) -> some View {
         ScrollView(.horizontal) {
             HStack(spacing: 8) {

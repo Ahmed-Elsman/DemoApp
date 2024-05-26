@@ -11,18 +11,18 @@ import ComposableArchitecture
 
 @MainActor
 final class GiveawayCarouselFeatureTests: XCTestCase {
-    
+
     // Test fetching giveaways action
     func testGetGiveawaysAction() async {
         let store = TestStore(
             initialState: GiveawayCarouslFeature.State()) {
                 GiveawayCarouslFeature()
             }
-        
+
         await store.send(.getGiveaways) {
             $0.isloading = true
         }
-        
+
         await store.receive(\.giveawaysResponse) {
             $0.isloading = false
             $0.giveaways = [Giveaway.mock]
@@ -31,7 +31,7 @@ final class GiveawayCarouselFeatureTests: XCTestCase {
             ])
             $0.giveawaysLoaded = true
         }
-        
+
         await store.receive(\.setAllGiveawaysForFiltration)
     }
 }

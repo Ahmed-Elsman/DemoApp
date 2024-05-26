@@ -35,7 +35,7 @@ extension Giveaway {
         endDate: "",
         users: 5
     )
-    
+
     static let mockedArray: [Giveaway] = [
         Giveaway(
             id: 128,
