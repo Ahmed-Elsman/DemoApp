@@ -31,7 +31,7 @@ struct PlatformCellView: View {
 
 #Preview {
     ZStack {
-        Color.white.ignoresSafeArea()
+        Color.primaryColor.ignoresSafeArea()
         HStack {
             PlatformCellView(
                 store: Store(

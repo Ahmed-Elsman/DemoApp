@@ -29,7 +29,7 @@ struct GiveawayDetailsView: View {
                                 }) {
                                     Image(systemName: "heart")
                                         .padding()
-                                        .background(Color.black.opacity(0.5))
+                                        .background(Color.secondaryColor.opacity(0.5))
                                         .clipShape(Circle())
                                 }
                                 .padding(.top, 10)
@@ -93,12 +93,12 @@ struct GiveawayDetailsView: View {
                         }
                         .padding()
                     }
-                    .background(Color.white)
+                    .background(Color.primaryColor)
                     .cornerRadius(15)
                     .shadow(radius: 5)
                     .padding()
                 }
-                .background(Color.white.ignoresSafeArea())
+                .background(Color.primaryColor.ignoresSafeArea())
             }
             .onAppear {
                 viewStore.send(.setGiveawayImage(viewStore.giveaway.image))

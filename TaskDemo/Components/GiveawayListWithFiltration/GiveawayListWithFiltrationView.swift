@@ -13,7 +13,7 @@ struct GiveawayListWithFiltrationView: View {
     let store: StoreOf<GiveawayListWithFiltrationFeature>
 
     var body: some View {
-            Color.white.ignoresSafeArea()
+            Color.primaryColor.ignoresSafeArea()
             LazyVStack(alignment: .leading, spacing: 0) {
                 PlatformFilterListView(store: store.scope(state: \.filterList, action: \.filterListAction))
 

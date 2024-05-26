@@ -34,7 +34,7 @@ struct ImageLoaderView: View {
 
 #Preview {
     ZStack {
-        Color.black.ignoresSafeArea()
+        Color.secondaryColor.ignoresSafeArea()
 
         ImageLoaderView(
             store: Store(

@@ -42,7 +42,7 @@ struct GiveawayCarouselView: View {
 
 #Preview {
     ZStack {
-        Color.white.ignoresSafeArea()
+        Color.primaryColor.ignoresSafeArea()
         GiveawayCarouselView(
             store: Store(
                 initialState: GiveawayCarouselFeature.State()

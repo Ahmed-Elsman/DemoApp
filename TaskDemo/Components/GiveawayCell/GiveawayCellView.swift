@@ -50,22 +50,22 @@ struct GiveawayCellView: View {
                 .font(.callout)
                 .fontWeight(.bold)
                 .lineLimit(2)
-                .foregroundColor(.white)
+                .foregroundColor(Color.primaryColor)
                 .frame(maxWidth: .infinity, alignment: .leading)
 
             Text(viewStore.description)
                 .font(.caption)
                 .fontWeight(.bold)
                 .lineLimit(3)
-                .foregroundColor(Color.white.opacity(0.5))
-                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
+                .foregroundColor(Color.primaryColor.opacity(0.7))
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomLeading)
         }
     }
 }
 
 #Preview {
     ZStack {
-        Color.black.ignoresSafeArea()
+        Color.secondaryColor.ignoresSafeArea()
         GiveawayCellView(
             store: Store(
                 initialState: GiveawayCellFeature.State(

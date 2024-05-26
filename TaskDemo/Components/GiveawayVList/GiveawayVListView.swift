@@ -37,7 +37,7 @@ struct GiveawayVListView: View {
 
 #Preview {
     ZStack {
-        Color.white.ignoresSafeArea()
+        Color.primaryColor.ignoresSafeArea()
         GiveawayVListView(
             store: Store(
                 initialState: GiveawayVListFeature.State()

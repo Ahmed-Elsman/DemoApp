@@ -22,6 +22,7 @@
 		271EAF692BF9120C00A6CFFA /* GiveawayCellFeatureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271EAF682BF9120C00A6CFFA /* GiveawayCellFeatureTests.swift */; };
 		271EAF6B2BF9154100A6CFFA /* GiveawayCarouslFeatureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271EAF6A2BF9154100A6CFFA /* GiveawayCarouslFeatureTests.swift */; };
 		2740301B2C03296D008447BF /* GradientOverlayModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2740301A2C03296D008447BF /* GradientOverlayModifier.swift */; };
+		274030202C03475C008447BF /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2740301F2C03475C008447BF /* Color.swift */; };
 		27404C532BF24CE400F73D56 /* GiveawayCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27404C522BF24CE400F73D56 /* GiveawayCellView.swift */; };
 		27404C552BF33D1900F73D56 /* GiveawayCellFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27404C542BF33D1900F73D56 /* GiveawayCellFeature.swift */; };
 		27404C582BF345FF00F73D56 /* ImageLoaderFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27404C572BF345FF00F73D56 /* ImageLoaderFeature.swift */; };
@@ -70,6 +71,7 @@
 		271EAF682BF9120C00A6CFFA /* GiveawayCellFeatureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiveawayCellFeatureTests.swift; sourceTree = "<group>"; };
 		271EAF6A2BF9154100A6CFFA /* GiveawayCarouslFeatureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiveawayCarouslFeatureTests.swift; sourceTree = "<group>"; };
 		2740301A2C03296D008447BF /* GradientOverlayModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientOverlayModifier.swift; sourceTree = "<group>"; };
+		2740301F2C03475C008447BF /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		27404C522BF24CE400F73D56 /* GiveawayCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiveawayCellView.swift; sourceTree = "<group>"; };
 		27404C542BF33D1900F73D56 /* GiveawayCellFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiveawayCellFeature.swift; sourceTree = "<group>"; };
 		27404C572BF345FF00F73D56 /* ImageLoaderFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoaderFeature.swift; sourceTree = "<group>"; };
@@ -264,6 +266,7 @@
 		277D9BF22BF23D15002A5914 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				2740301F2C03475C008447BF /* Color.swift */,
 				27404C592BF3471800F73D56 /* ImageLoader */,
 			);
 			path = Shared;
@@ -427,6 +430,7 @@
 				277D9BF42BF23D1F002A5914 /* ImageLoaderView.swift in Sources */,
 				27657F1C2BF616CD00FEA898 /* GiveawayListWithFiltrationFeature.swift in Sources */,
 				2771CCE02BF220D200984754 /* TaskDemoApp.swift in Sources */,
+				274030202C03475C008447BF /* Color.swift in Sources */,
 				27404C532BF24CE400F73D56 /* GiveawayCellView.swift in Sources */,
 				27DAFE4D2BF37A8600DD9FE1 /* PlatformCellFeature.swift in Sources */,
 				27DAFE4B2BF379DD00DD9FE1 /* PlatformCellView.swift in Sources */,
@@ -620,6 +624,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TaskDemo/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Task Demo";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.games";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -653,6 +659,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TaskDemo/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Task Demo";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.games";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

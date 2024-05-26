@@ -12,7 +12,7 @@ struct GradientOverlayModifier: ViewModifier {
         content
             .overlay(
                 LinearGradient(
-                    gradient: Gradient(colors: [Color.black.opacity(0.5), Color.black.opacity(0.5), Color.black.opacity(0.5)]),
+                    gradient: Gradient(colors: [Color.secondaryColor.opacity(0.5), Color.secondaryColor.opacity(0.5), Color.secondaryColor.opacity(0.5)]),
                     startPoint: .top,
                     endPoint: .bottom
                 )

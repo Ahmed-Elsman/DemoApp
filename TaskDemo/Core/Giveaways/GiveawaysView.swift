@@ -33,7 +33,7 @@ struct GiveawaysView: View {
                         GiveawayListWithFiltrationView(store: store.scope(state: \.giveawayListWithFilter, action: \.giveawayListWithFilterAction))
                     }
                 }
-                .background(Color.white.ignoresSafeArea())
+                .background(Color.primaryColor.ignoresSafeArea())
             }
         }
     }
@@ -51,7 +51,7 @@ struct GiveawaysView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
 
                 ImageLoaderView(store: store.scope(state: \.imageLoaderState, action: \.imageLoaderAction))
-                    .background(Color.white)
+                    .background(Color.primaryColor)
                     .clipShape(Circle())
                     .frame(width: 50)
             }

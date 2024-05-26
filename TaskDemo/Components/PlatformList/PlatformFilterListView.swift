@@ -35,7 +35,7 @@ struct PlatformFilterListView: View {
 
 #Preview {
     ZStack {
-        Color.white.ignoresSafeArea()
+        Color.primaryColor.ignoresSafeArea()
         PlatformFilterListView(
             store: Store(
                 initialState: PlatformFilterListFeature.State()
