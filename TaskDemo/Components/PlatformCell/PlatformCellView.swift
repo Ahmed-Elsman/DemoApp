@@ -24,7 +24,7 @@ struct PlatformCellView: View {
                 .foregroundColor(viewStore.isSelected ? .black : .gray)
                 .cornerRadius(15)
                 .onTapGesture {
-                    viewStore.send(.selectPlatfrom(viewStore.platform))
+                    viewStore.send(.selectPlatform(viewStore.platform))
                 }
         }
     }

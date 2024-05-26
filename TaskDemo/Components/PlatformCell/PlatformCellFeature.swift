@@ -26,13 +26,13 @@ struct PlatformCellFeature {
     }
     
     enum Action {
-        case selectPlatfrom(Platform)
+        case selectPlatform(Platform)
     }
     
     var body: some Reducer<State, Action> {
         Reduce { state, action in
             switch action {
-            case let .selectPlatfrom(platform):
+            case let .selectPlatform(platform):
                 state.isSelected = true
                 state.platform = platform
                 return .none
