@@ -19,7 +19,7 @@ struct GiveawaysView: View {
                 ZStack(alignment: .top) {
                     LazyVStack(spacing: 5) {
                         
-                        headerView(viewStore: store.scope(state: \.giveaway, action: \.giveawayAction))
+                        headerView(store: store.scope(state: \.giveaway, action: \.giveawayAction))
                             .padding(.horizontal, 16)
                         
                         Text("Explore \nGames Giveaways")
@@ -38,10 +38,10 @@ struct GiveawaysView: View {
         }
     }
     
-    private func headerView(viewStore: StoreOf<GiveawaysFeature>) -> some View {
+    private func headerView(store: StoreOf<GiveawaysFeature>) -> some View {
         
         HStack {
-            if let currentUser = viewStore.currentUser {
+            if let currentUser = store.currentUser {
                 VStack(alignment: .leading) {
                     Text("👋")
                     Text("Hello, \(currentUser.name)")
@@ -50,15 +50,15 @@ struct GiveawaysView: View {
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 
-                ImageLoaderView(store: viewStore.scope(state: \.imageLoaderState, action: \.imageLoaderAction))
+                ImageLoaderView(store: store.scope(state: \.imageLoaderState, action: \.imageLoaderAction))
                     .background(Color.white)
                     .clipShape(Circle())
                     .frame(width: 50)
             }
         }
         .onAppear {
-            viewStore.send(.setCurrentUser(User.mock))
-            viewStore.send(.setUserImageContentMode(.fill))
+            store.send(.setCurrentUser(User.mock))
+            store.send(.setUserImageContentMode(.fill))
         }
         
     }

@@ -9,6 +9,7 @@ import ComposableArchitecture
 import Foundation
 
 struct GiveawaysClient {
+    static let baseUrl = "https://www.gamerpower.com/api/"
     var fetch: (Platform?) async throws -> [Giveaway]
 }
 
@@ -17,9 +18,9 @@ extension GiveawaysClient: DependencyKey {
         fetch: { platform in
             let urlString: String
             if let platform = platform {
-                urlString = "https://www.gamerpower.com/api/giveaways?platform=\(platform.rawValue)"
+                urlString = "\(baseUrl)giveaways?platform=\(platform.rawValue)"
             } else {
-                urlString = "https://www.gamerpower.com/api/giveaways"
+                urlString = "\(baseUrl)giveaways"
             }
             
             guard let url = URL(string: urlString) else {
