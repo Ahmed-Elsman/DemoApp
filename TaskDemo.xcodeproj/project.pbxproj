@@ -11,10 +11,10 @@
 		271557A32BF5E13B0060CD70 /* PlatformFilterListFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271557A12BF5DE880060CD70 /* PlatformFilterListFeature.swift */; };
 		271557AF2BF6043B0060CD70 /* GiveawayVListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271557AE2BF6043A0060CD70 /* GiveawayVListView.swift */; };
 		271557B12BF6048D0060CD70 /* GiveawayVListFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271557B02BF6048D0060CD70 /* GiveawayVListFeature.swift */; };
-		27156EC82BF495C800A70D11 /* GiveawayCarouslView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27156EC72BF495C800A70D11 /* GiveawayCarouslView.swift */; };
+		27156EC82BF495C800A70D11 /* GiveawayCarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27156EC72BF495C800A70D11 /* GiveawayCarouselView.swift */; };
 		27156ECC2BF49DAC00A70D11 /* GiveawayDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27156ECB2BF49DAC00A70D11 /* GiveawayDetailsView.swift */; };
 		27156ECE2BF49DBB00A70D11 /* GiveawayDetailsFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27156ECD2BF49DBB00A70D11 /* GiveawayDetailsFeature.swift */; };
-		27156ED02BF4D5A900A70D11 /* GiveawayCarouslFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27156ECF2BF4D5A900A70D11 /* GiveawayCarouslFeature.swift */; };
+		27156ED02BF4D5A900A70D11 /* GiveawayCarouselFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27156ECF2BF4D5A900A70D11 /* GiveawayCarouselFeature.swift */; };
 		27156ED42BF4D67500A70D11 /* ComposedFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27156ED32BF4D67500A70D11 /* ComposedFeature.swift */; };
 		271EAF632BF8E5EC00A6CFFA /* GiveawaysFeatureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271EAF622BF8E5EC00A6CFFA /* GiveawaysFeatureTests.swift */; };
 		271EAF652BF908C300A6CFFA /* ComposedFeatureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271EAF642BF908C300A6CFFA /* ComposedFeatureTests.swift */; };
@@ -57,10 +57,10 @@
 		271557A12BF5DE880060CD70 /* PlatformFilterListFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformFilterListFeature.swift; sourceTree = "<group>"; };
 		271557AE2BF6043A0060CD70 /* GiveawayVListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiveawayVListView.swift; sourceTree = "<group>"; };
 		271557B02BF6048D0060CD70 /* GiveawayVListFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiveawayVListFeature.swift; sourceTree = "<group>"; };
-		27156EC72BF495C800A70D11 /* GiveawayCarouslView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiveawayCarouslView.swift; sourceTree = "<group>"; };
+		27156EC72BF495C800A70D11 /* GiveawayCarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiveawayCarouselView.swift; sourceTree = "<group>"; };
 		27156ECB2BF49DAC00A70D11 /* GiveawayDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiveawayDetailsView.swift; sourceTree = "<group>"; };
 		27156ECD2BF49DBB00A70D11 /* GiveawayDetailsFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiveawayDetailsFeature.swift; sourceTree = "<group>"; };
-		27156ECF2BF4D5A900A70D11 /* GiveawayCarouslFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiveawayCarouslFeature.swift; sourceTree = "<group>"; };
+		27156ECF2BF4D5A900A70D11 /* GiveawayCarouselFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiveawayCarouselFeature.swift; sourceTree = "<group>"; };
 		27156ED32BF4D67500A70D11 /* ComposedFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposedFeature.swift; sourceTree = "<group>"; };
 		271EAF592BF8E5DA00A6CFFA /* TaskDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TaskDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		271EAF622BF8E5EC00A6CFFA /* GiveawaysFeatureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiveawaysFeatureTests.swift; sourceTree = "<group>"; };
@@ -136,13 +136,13 @@
 			path = GiveawayDetails;
 			sourceTree = "<group>";
 		};
-		27156ED22BF4D62D00A70D11 /* GiveawayCarousl */ = {
+		27156ED22BF4D62D00A70D11 /* GiveawayCarousel */ = {
 			isa = PBXGroup;
 			children = (
-				27156EC72BF495C800A70D11 /* GiveawayCarouslView.swift */,
-				27156ECF2BF4D5A900A70D11 /* GiveawayCarouslFeature.swift */,
+				27156EC72BF495C800A70D11 /* GiveawayCarouselView.swift */,
+				27156ECF2BF4D5A900A70D11 /* GiveawayCarouselFeature.swift */,
 			);
-			path = GiveawayCarousl;
+			path = GiveawayCarousel;
 			sourceTree = "<group>";
 		};
 		271EAF5A2BF8E5DA00A6CFFA /* TaskDemoTests */ = {
@@ -232,7 +232,7 @@
 				271557A92BF601EC0060CD70 /* GiveawayVList */,
 				2715579E2BF5DE4C0060CD70 /* PlatformList */,
 				27DAFE492BF379CB00DD9FE1 /* PlatformCell */,
-				27156ED22BF4D62D00A70D11 /* GiveawayCarousl */,
+				27156ED22BF4D62D00A70D11 /* GiveawayCarousel */,
 				27404C562BF344A600F73D56 /* GiveawayCell */,
 			);
 			path = Components;
@@ -411,14 +411,14 @@
 				27657F1A2BF616C400FEA898 /* GiveawayListWithFiltrationView.swift in Sources */,
 				27156ECE2BF49DBB00A70D11 /* GiveawayDetailsFeature.swift in Sources */,
 				2771CCE22BF220D200984754 /* GiveawaysView.swift in Sources */,
-				27156ED02BF4D5A900A70D11 /* GiveawayCarouslFeature.swift in Sources */,
+				27156ED02BF4D5A900A70D11 /* GiveawayCarouselFeature.swift in Sources */,
 				27156ECC2BF49DAC00A70D11 /* GiveawayDetailsView.swift in Sources */,
 				277D9BFB2BF2405C002A5914 /* UserModel.swift in Sources */,
 				2771CCF42BF224CA00984754 /* GiveawaysFeature.swift in Sources */,
 				271557B12BF6048D0060CD70 /* GiveawayVListFeature.swift in Sources */,
 				27404C582BF345FF00F73D56 /* ImageLoaderFeature.swift in Sources */,
 				271557AF2BF6043B0060CD70 /* GiveawayVListView.swift in Sources */,
-				27156EC82BF495C800A70D11 /* GiveawayCarouslView.swift in Sources */,
+				27156EC82BF495C800A70D11 /* GiveawayCarouselView.swift in Sources */,
 				277D9BF42BF23D1F002A5914 /* ImageLoaderView.swift in Sources */,
 				27657F1C2BF616CD00FEA898 /* GiveawayListWithFiltrationFeature.swift in Sources */,
 				2771CCE02BF220D200984754 /* TaskDemoApp.swift in Sources */,

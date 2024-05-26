@@ -28,7 +28,7 @@ struct GiveawaysView: View {
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .padding(.horizontal, 16)
                         
-                        GiveawayCarouslView(store: store.scope(state: \.giveawayCarousl, action: \.giveawayCarouslAction))
+                        GiveawayCarouselView(store: store.scope(state: \.giveawayCarousel, action: \.giveawayCarouselAction))
                         
                         GiveawayListWithFiltrationView(store: store.scope(state: \.giveawayListWithFilter, action: \.giveawayListWithFilterAction))
                     }
