@@ -7,6 +7,7 @@
 
 import ComposableArchitecture
 import Foundation
+
 @Reducer
 struct PlatformCellFeature {
     
@@ -16,13 +17,6 @@ struct PlatformCellFeature {
         var title: String
         var isSelected: Bool
         var platform: Platform
-        
-        init(id: UUID, title: String, isSelected: Bool, platform: Platform) {
-            self.id = id
-            self.title = title
-            self.isSelected = isSelected
-            self.platform = platform
-        }
     }
     
     enum Action {

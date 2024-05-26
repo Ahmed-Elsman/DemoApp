@@ -5,7 +5,6 @@
 //  Created by Ahmed Elsman on 14/05/2024.
 //
 
-import Foundation
 import SwiftUI
 import ComposableArchitecture
 
@@ -38,9 +37,9 @@ struct PlatformCellView: View {
                 store: Store(
                     initialState: PlatformCellFeature.State(
                         id: UUID(),
-                        title: "all",
+                        title: Platform.all.rawValue,
                         isSelected: true,
-                        platform: Platform.all
+                        platform: .all
                     )
                 ) {
                     PlatformCellFeature()
@@ -51,9 +50,9 @@ struct PlatformCellView: View {
                 store: Store(
                     initialState: PlatformCellFeature.State(
                         id: UUID(),
-                        title: "all",
+                        title: Platform.pc.rawValue,
                         isSelected: false,
-                        platform: Platform.all
+                        platform: .pc
                     )
                 ) {
                     PlatformCellFeature()
