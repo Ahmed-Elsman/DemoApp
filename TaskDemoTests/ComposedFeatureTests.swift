@@ -23,10 +23,6 @@ final class ComposedFeatureTests: XCTestCase {
                 ComposedFeature()
             }
 
-        await store.send(.giveawayCarouslAction(.setAllGiveawaysForFiltration(MockData.giveaways))) {
-            $0.allGiveaways = MockData.giveaways
-        }
-
         store.exhaustivity = .off
     }
 }
